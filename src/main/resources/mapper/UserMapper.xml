@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheye.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.zheye.bean.User">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="family" jdbcType="VARCHAR" property="family" />
+    <result column="intro" jdbcType="VARCHAR" property="intro" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    userid, name, age, sex, email, family, intro, create_time, update_time
+  </sql>
+
+  <!-- 新增用户信息 -->
+  <insert id="insert" parameterType="com.zheye.bean.User">
+    insert into user
+    values (#{userid,jdbcType=VARCHAR},
+            #{name,jdbcType=VARCHAR},
+            #{age,jdbcType=INTEGER},
+            #{sex,jdbcType=VARCHAR},
+            #{password,jdbcType=VARCHAR},
+            #{email,jdbcType=VARCHAR},
+            #{family,jdbcType=VARCHAR},
+            #{intro,jdbcType=VARCHAR},
+            now(),
+            now())
+  </insert>
+
+  <!-- 删除用户信息 -->
+  <delete id="deleteByKey" parameterType="java.lang.String">
+    delete from user
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+
+  <!-- 编辑用户信息 -->
+  <update id="updateByKey" parameterType="com.zheye.bean.User">
+    update user
+    set age = #{age,jdbcType=INTEGER},
+        sex = #{sex,jdbcType=VARCHAR},
+        family = #{family,jdbcType=VARCHAR},
+        intro = #{intro,jdbcType=VARCHAR},
+        update_time = now()
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+
+  <!-- 修改用户名 -->
+  <update id="updateNameByKey" parameterType="com.zheye.bean.User">
+    update user
+    set name = #{name,jdbcType=VARCHAR},
+        update_time = now()
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+
+  <!-- 修改密码 -->
+  <update id="updatePasswordByKey" parameterType="com.zheye.bean.User">
+    update user
+    set password = #{password,jdbcType=VARCHAR},
+        update_time = now()
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+
+  <!-- 修改Email -->
+  <update id="updateEmailByKey" parameterType="com.zheye.bean.User">
+    update user
+    set email = #{email,jdbcType=VARCHAR},
+        update_time = now()
+    where userid = #{userid,jdbcType=VARCHAR}
+  </update>
+
+  <!-- 按userid查询关注信息 -->
+  <select id="selectUserImplByKey" parameterType="java.util.Map" resultType="com.zheye.bean.impl.UserImpl">
+    select uva.userid, uva.name, uva.age, uva.sex, uva.email, uva.family, uva.intro, uva.create_time, uva.update_time, uva.photo, uva.gid, uva.attentionTime, coalesce(att2.fansCount, 0) as fansCount
+    from (select u.userid, u.name, u.age, u.sex, u.email, u.family, u.intro, u.create_time, u.update_time, v.photo, att.gid, att.create_time as attentionTime
+          from (select userid, name, age, sex, email, family, intro, create_time, update_time
+                from user
+                where userid in (
+                                <if test="b">
+                                  select beuserid from attention where userid = #{userid,jdbcType=VARCHAR}
+                                </if >
+                                <if test="!b">
+                                  select userid from attention where beuserid = #{userid,jdbcType=VARCHAR}
+                                </if >
+                                )) u
+          left join via v
+          on u.userid = v.userid
+          left join attention att on
+            <if test="b">
+                u.userid = att.beuserid and att.userid = #{userid,jdbcType=VARCHAR}
+            </if>
+            <if test="!b">
+              u.userid = att.userid and att.beuserid = #{userid,jdbcType=VARCHAR}
+            </if>) uva
+    left join (select beuserid, count(1) as fansCount
+              from attention
+              where beuserid in (select beuserid from attention where userid = #{userid,jdbcType=VARCHAR})
+              group by beuserid) att2
+    on uva.userid = att2.beuserid
+    order by attentionTime desc
+  </select>
+
+  <!-- 按姓名（Email）和密码查询用户信息 -->
+  <select id="selectUserImplByNEP" parameterType="com.zheye.bean.User" resultType="com.zheye.bean.impl.UserImpl">
+    select u.userid, u.name, u.age, u.sex, u.email, u.family, u.intro, u.create_time, u.update_time, v.photo
+    from user u left join via v on u.userid = v.userid
+    where u.name = #{name,jdbcType=VARCHAR} and u.password = #{password,jdbcType=VARCHAR}
+        or u.email = #{name,jdbcType=VARCHAR} and u.password = #{password,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 按用户名查询用户信息 -->
+  <select id="selectUserByName" parameterType="com.zheye.bean.User" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 按Email查询用户信息 -->
+  <select id="selectUserByEmail" parameterType="com.zheye.bean.User" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where email = #{email,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 查询用户信息（分页） -->
+  <select id="selectUserImplPaging" parameterType="java.util.Map" resultType="com.zheye.bean.impl.UserImpl">
+    select u.userid, u.name, u.age, u.sex, u.email, u.family, u.intro, u.create_time, u.update_time, v.photo
+    from user u left join via v on u.userid = v.userid
+    order by u.create_time desc
+    limit #{offset},#{limit}
+  </select>
+
+  <!-- 按userid和密码查询用户信息 -->
+  <select id="selectUserByUP" parameterType="com.zheye.bean.User" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where userid = #{userid,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 按userid查询用户信息 -->
+  <select id="selectUserByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where userid = #{userid,jdbcType=VARCHAR}
+    order by create_time desc
+  </select>
+
+  <!-- 按文章数获取用户排名 -->
+  <select id="selectUserImplRankByArticleSum" resultType="com.zheye.bean.impl.UserImpl">
+    select u.userid, u.name, count(1) articleSum, u.email, u.update_time
+    from article a left join user u on
+    a.userid = u.userid
+    where a.status = 1
+    group by u.name
+    order by articleSum desc
+    limit 5
+  </select>
+
+  <!-- 获取新注册用户信息 -->
+  <select id="selectNewUserImpl" resultType="com.zheye.bean.impl.UserImpl">
+    select u.userid, u.name, u.create_time, v.photo
+    from user u left join via v on
+    u.userid = v.userid
+    order by create_time desc
+    limit 8
+  </select>
+
+  <!-- 查询用户总数 -->
+  <select id="selectCount" resultType="java.lang.Integer">
+    select count(1) as total from user
+  </select>
+  
+</mapper>

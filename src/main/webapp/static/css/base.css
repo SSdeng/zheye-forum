@@ -1,0 +1,226 @@
+﻿.no-yj {
+    border-radius: 0px !important;
+}
+
+.label-nav {
+    position: absolute;
+    top: -13px;
+    right: -12px;
+    text-align: center;
+    font-size: 9px;
+    padding: 2px 4px;
+    line-height: 0.9;
+}
+
+.nav-left {
+    margin-top: -20px;
+    position: fixed;
+    z-index: 2;
+    text-align: center;
+}
+
+.nav-left-bottrom-border {
+    border-bottom: 1px solid #E7E7E7;
+}
+
+.nav-left-dropdown-ul {
+    background-color: #fff;
+    border-left: 3px solid #1963AA;
+    margin-top: -1px;
+}
+
+.nav-left-dropdown > ul {
+    display: none;
+}
+
+.nav-left-dropdown-menu {
+    position: relative;
+    list-style: none;
+    padding-left: 0px;
+}
+
+.nav-left-dropdown-menu > li {
+    border-top: 1px dotted #E7E7E7;
+}
+
+.nav-left-dropdown-menu > li > a {
+    color: #777777 !important;
+    display: block;
+    padding: 10px 30px 10px 0px;
+    text-align: center;
+}
+
+.nav-left-dropdown-menu > li > a:hover, .nav-left-dropdown-menu > li > a:focus {
+    color: #1963AA !important;
+    text-decoration: none;
+    outline: none;
+}
+
+.nav-left-dropdown-menu > li:first-child {
+}
+
+.nav-left-dropdown-a {
+    background-color: #F9F9F9;
+    border-left: 3px solid #1963AA;
+}
+
+.nav-user-img {
+    width: 20px;
+    height: 20px;
+}
+
+.nav-user-img-xiala {
+    width: 100px;
+    height: 100px;
+}
+
+a {
+    color: #08A5E0 !important;
+}
+
+a:focus, a:hover {
+    color: #0a8cd2 !important;
+    outline: none !important;
+}
+
+.no-hover:hover {
+    background: none;
+    color: none;
+}
+
+.nav-username {
+    margin-left: 8px
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus {
+    outline: none;
+    color: #fff !important;
+    border: 1px solid #34aaef;
+    border-top: 2px solid #f00 !important;
+    background-color: #34aaef !important;
+}
+
+table {
+    color: #666666;
+}
+
+.tb-bg > thead {
+    background-color: #f7f7f7;
+}
+
+.label {
+    color: #fff !important;
+}
+
+.panel-2 {
+    border-top: 3px solid #244d9f;
+
+}
+
+.panel-3 {
+    border-top: 3px solid #1963AA;
+}
+
+.tb-hover > tbody > tr:hover {
+    background-color: #F7F7F7;
+}
+
+@media only screen and (max-width: 769px) {
+
+    .nav-left {
+        display: none;
+        z-index: 999;
+    }
+
+}
+
+/* 菜单（head） */
+.navbar-default {
+    background-color: #3c8dbc !important;
+    border-color: #3c8dbc !important;
+}
+.nav a:hover {
+    background-color: #367fa9 !important;
+}
+.navbar-nav li a span {
+    color: #fff !important;
+}
+.dropdown-menu li p span {
+    color: #fff;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #367fa9;
+}
+.user-li-head {
+    background-color: #367fa9;
+    margin-top: 0px;
+    border-bottom: 1px solid #367fa9;
+    padding-top: 10px
+}
+.dropdown-menu {
+    background-color: #367fa9 !important;
+    min-width: 100%;
+}
+
+/* 菜单（left） */
+.nav-left > .user-panel {
+    padding: 30px;
+    background-color: #222d32;
+    border-right: 1px solid #222d32;
+}
+.nav-left > .user-panel > img {
+    width: 100px;
+    height: 100px;
+}
+.nav-list > ul {
+    border: 1px solid #222d32;
+    list-style: none;
+    background-color: #222d32;
+    padding: 0px;
+    margin: 0px;
+    min-height: 900px;
+}
+.nav-list > ul > li > a {
+    height: 45px;
+    padding: 13px 30px 10px 0px;
+    display: block;
+    color: #fff !important;
+    /*border-left: 3px solid #3c8dbc;*/
+}
+/*.nav-list > ul > li > a:focus {
+    text-decoration: none;
+    outline: none;
+    color: #3c8dbc !important;
+    background-color: #1d262a;
+    border-left: 3px solid #3c8dbc;
+}*/
+.nav-list > ul > li > a:hover {
+    color: #36e2ff !important;
+    text-decoration: none;
+    background-color: #1d262a;
+    border-left: 3px solid #3c8dbc;
+}
+
+/* 表格（right） */
+@media (min-width: 992px) {
+    .col-md-2,.col-md-10 {
+        float: left;
+    }
+    .col-md-10 {
+        width: 84% !important;
+    }
+    .col-md-2 {
+        width: 14% !important;
+    }
+    .col-md-offset-2 {
+        margin-left: 15% !important;
+    }
+}
+.table {
+    margin-bottom: 0px !important;
+}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheye.dao.VisitMapper">
+  <resultMap id="BaseResultMap" type="com.zheye.bean.Visit">
+    <id column="VisitID" jdbcType="VARCHAR" property="visitid" />
+    <result column="VisitURL" jdbcType="VARCHAR" property="visiturl" />
+    <result column="VisitIP" jdbcType="VARCHAR" property="visitip" />
+    <result column="VisitCountry" jdbcType="VARCHAR" property="visitcountry" />
+    <result column="VisitProvince" jdbcType="VARCHAR" property="visitprovince" />
+    <result column="VisitCity" jdbcType="VARCHAR" property="visitcity" />
+    <result column="VisitHostName" jdbcType="VARCHAR" property="visithostname" />
+    <result column="VisitOS" jdbcType="VARCHAR" property="visitos" />
+    <result column="VisitTime" jdbcType="TIMESTAMP" property="visittime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    VisitID, VisitURL, VisitIP, VisitCountry, VisitProvince, VisitCity, VisitHostName, 
+    VisitOS, VisitTime
+  </sql>
+
+  <!-- 新增访问信息 -->
+  <insert id="insert" parameterType="com.zheye.bean.Visit">
+    insert into visit
+    values (#{visitid,jdbcType=VARCHAR},
+            #{visiturl,jdbcType=VARCHAR},
+            #{visitip,jdbcType=VARCHAR},
+            #{visitcountry,jdbcType=VARCHAR},
+            #{visitprovince,jdbcType=VARCHAR},
+            #{visitcity,jdbcType=VARCHAR},
+            #{visithostname,jdbcType=VARCHAR},
+            #{visitos,jdbcType=VARCHAR},
+            now())
+  </insert>
+  
+  <!-- 查询所有访问信息 -->
+  <select id="selectVisitPaging" parameterType="com.zheye.bean.Visit" resultMap="BaseResultMap">
+    select VisitIP, VisitCountry, VisitProvince, VisitCity, VisitHostName, VisitOS, VisitTime
+    from visit
+    order by VisitTime desc
+    limit #{offset},#{limit}
+  </select>
+
+  <!-- 统计-国家 -->
+  <select id="selectVisitCountryStatistic" parameterType="com.zheye.bean.Visit" resultMap="BaseResultMap">
+    select VisitCountry,COUNT(1) as count
+    from visit
+    where VisitCountry != ''
+    GROUP BY VisitCountry
+  </select>
+
+  <!-- 统计-中国省份 -->
+  <select id="selectVisitProvinceStatistic" parameterType="com.zheye.bean.Visit" resultMap="BaseResultMap">
+    select VisitProvince,COUNT(1) as count
+    from visit
+    where VisitCountry = '中国' and VisitProvince != '' and VisitProvince != '阿里云'
+    GROUP BY VisitProvince
+  </select>
+
+  <!-- 获取最近n天的访问数据 -->
+  <select id="selectVisitRecordDay" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select *
+    from (select VisitTime, count(1) as count
+          from visit
+          group by date_format(VisitTime,'%y%m%d')
+          order by VisitTime desc
+          limit #{userid,jdbcType=INTEGER}) temp
+    order by VisitTime
+  </select>
+
+  <!-- 总访问数 -->
+  <select id="selectCount" resultType="java.lang.Integer">
+    select count(1) from visit
+  </select>
+
+  <!-- 月访问数 -->
+  <select id="selectMonthCount" resultType="java.lang.Integer">
+    <!-- 最近30次 -->
+    select count(1) from visit where VisitTime > DATE_SUB(CURDATE(),INTERVAL 30 DAY) and VisitTime <![CDATA[<]]> DATE(now())
+    <!-- 本月 -->
+    /*select count(1) from visit WHERE DATE_FORMAT(VisitTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' );*/
+  </select>
+
+  <!-- 周访问数 -->
+  <select id="selectWeekCount" resultType="java.lang.Integer">
+    select count(1) from visit where VisitTime > DATE_SUB(CURDATE(),INTERVAL 7 DAY) and VisitTime <![CDATA[<]]> DATE(now())
+  </select>
+
+  <!-- 日访问数 -->
+  <select id="selectDayCount" resultType="java.lang.Integer">
+    select count(1) from visit where VisitTime >= CURDATE()
+  </select>
+
+</mapper>

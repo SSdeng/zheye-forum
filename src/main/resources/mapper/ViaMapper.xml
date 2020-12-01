@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheye.dao.ViaMapper">
+  <resultMap id="BaseResultMap" type="com.zheye.bean.Via">
+    <id column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    userid, photo, update_time
+  </sql>
+
+  <!-- 新增头像 -->
+  <insert id="insert" parameterType="com.zheye.bean.Via">
+    insert into via
+    values (#{userid,jdbcType=VARCHAR},
+            #{photo,jdbcType=VARCHAR},
+            now())
+  </insert>
+
+  <!-- 删除某用户的头像信息 -->
+  <delete id="deleteByKey" parameterType="java.lang.String">
+    delete from via
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+
+  <!-- 修改某用户头像信息 -->
+  <update id="updateByKey" parameterType="com.zheye.bean.Via">
+    update via
+    set photo = #{photo,jdbcType=VARCHAR},
+        update_time = now()
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 按userid查询用户信息 -->
+  <select id="selectViaByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from via
+    where userid = #{userid,jdbcType=VARCHAR}
+    order by update_time desc
+  </select>
+  
+</mapper>

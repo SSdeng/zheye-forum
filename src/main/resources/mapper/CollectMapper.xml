@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheye.dao.CollectMapper">
+  <resultMap id="BaseResultMap" type="com.zheye.bean.Collect">
+    <id column="sid" jdbcType="VARCHAR" property="sid" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
+    <result column="fid" jdbcType="VARCHAR" property="fid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    sid, userid, fid, create_time
+  </sql>
+
+  <!-- 新增收藏信息 -->
+  <insert id="insert" parameterType="com.zheye.bean.Collect">
+    insert into collect
+    values (#{sid,jdbcType=VARCHAR},
+            #{userid,jdbcType=VARCHAR},
+            #{fid,jdbcType=VARCHAR},
+            now())
+  </insert>
+
+  <!-- 按sid删除收藏信息 -->
+  <delete id="deleteByKey" parameterType="java.lang.String">
+    delete from collect
+    where sid = #{sid,jdbcType=VARCHAR}
+  </delete>
+
+  <!-- 按userid和fid删除收藏 -->
+  <delete id="deleteByUF" parameterType="com.zheye.bean.Collect">
+    delete from collect
+    where userid = #{userid,jdbcType=VARCHAR} and fid = #{fid,jdbcType=VARCHAR}
+  </delete>
+
+  <!-- 按fid删除收藏信息 -->
+  <delete id="deleteByFid" parameterType="java.lang.String">
+    delete from collect
+    where fid = #{fid,jdbcType=VARCHAR}
+  </delete>
+
+  <!-- 删除某用户对应的收藏信息 -->
+  <delete id="deleteByUserid" parameterType="java.lang.String">
+    delete from collect
+    where userid = #{userid,jdbcType=VARCHAR}
+  </delete>
+
+  <!-- 查询所有收藏信息 -->
+  <select id="selectCollect" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from collect
+    order by create_time desc
+  </select>
+  
+  <!-- 按收藏者id和被收藏文章id进行查询 -->
+  <select id="selectCollectByUF" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from collect
+    where userid = #{userid,jdbcType=VARCHAR} and fid = #{fid,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

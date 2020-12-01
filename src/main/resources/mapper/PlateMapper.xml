@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zheye.dao.PlateMapper">
+  <resultMap id="BaseResultMap" type="com.zheye.bean.Plate">
+    <id column="bid" jdbcType="VARCHAR" property="bid" />
+    <result column="bname" jdbcType="VARCHAR" property="bname" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    bid, bname, create_time, update_time
+  </sql>
+
+  <!-- 新增板块信息 -->
+  <insert id="insert" parameterType="com.zheye.bean.Plate">
+    insert into plate
+    values (#{bid,jdbcType=VARCHAR},
+            #{bname,jdbcType=VARCHAR},
+            now(),
+            now())
+  </insert>
+
+  <!-- 修改板块 -->
+  <update id="updateByKey" parameterType="com.zheye.bean.Plate">
+    update plate
+    set bname = #{bname,jdbcType=VARCHAR},
+        update_time = now()
+    where bid = #{bid,jdbcType=VARCHAR}
+  </update>
+
+  <!-- 按bid删除板块信息 -->
+  <delete id="deleteByKey" parameterType="java.lang.String">
+    delete from plate
+    where bid = #{bid,jdbcType=VARCHAR}
+  </delete>
+  
+  <!-- 查询板块的所有信息 -->
+  <select id="selectPlate" parameterType="com.zheye.bean.Plate" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from plate
+    order by create_time desc
+  </select>
+  
+  <!-- 按板块名查询 -->
+  <select id="selectPlateByName" parameterType="com.zheye.bean.Plate" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from plate
+    where bname = #{bname,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 按板块id查询 -->
+  <select id="selectPlateByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from plate
+    where bid = #{bid,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 总板块数 -->
+  <select id="selectCount" resultType="java.lang.Integer">
+    select count(1) from plate
+  </select>
+  
+</mapper>
