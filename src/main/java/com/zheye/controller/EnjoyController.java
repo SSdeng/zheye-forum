@@ -14,7 +14,12 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("/api/rest/nanshengbbs/v3.0/enjoy")
+/**
+ * 点赞控制类
+ *
+ * @author dengzhijian
+ */
+@RequestMapping("/zheye-forum/enjoy")
 @Controller
 public class EnjoyController {
 	@Autowired
@@ -39,7 +44,7 @@ public class EnjoyController {
 			return ReturnT.fail("点赞失败");
 		}
 	}
-	
+
 	/**
 	 * 删除点赞（按eid）
 	 * @param eid
@@ -56,7 +61,7 @@ public class EnjoyController {
 			return ReturnT.fail("取消点赞失败");
 		}
 	}
-	
+
 	/**
 	 * 删除点赞（按userid和fid）
 	 * @param fid
@@ -77,7 +82,7 @@ public class EnjoyController {
 			return ReturnT.fail("取消点赞失败");
 		}
 	}
-	
+
 	/**
 	 * 按userid和fid获取点赞信息
 	 * @param fid

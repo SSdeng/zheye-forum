@@ -11,14 +11,19 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
-@RequestMapping("/api/rest/nanshengbbs/v3.0/attention")
+/**
+ * 关注控制类
+ *
+ * @author yefeng
+ */
+@RequestMapping("/zheye-forum/attention")
 @Controller
 public class AttentionController {
 	@Autowired
 	AttentionService attentionService;
 	@Autowired
 	UserService userService;
-	
+
 	/**
 	 * 添加关注
 	 * @return

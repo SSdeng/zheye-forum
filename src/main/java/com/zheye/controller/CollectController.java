@@ -14,7 +14,12 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("/api/rest/nanshengbbs/v3.0/collect")
+/**
+ * 收藏控制类
+ *
+ * @author dengzhijian
+ */
+@RequestMapping("/zheye-forum/collect")
 @Controller
 public class CollectController {
 	@Autowired
@@ -56,7 +61,7 @@ public class CollectController {
 			return ReturnT.fail("取消收藏失败");
 		}
 	}
-	
+
 	/**
 	 * 删除收藏（按userid和fid）
 	 * @param fid
@@ -77,7 +82,7 @@ public class CollectController {
 			return ReturnT.fail("取消收藏失败");
 		}
 	}
-	
+
 	/**
 	 * 按userid和fid获取收藏信息
 	 * @param fid

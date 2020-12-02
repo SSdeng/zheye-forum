@@ -13,26 +13,30 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 版块控制类
+ */
 @Controller
-@RequestMapping("/api/rest/nanshengbbs/v3.0/plate")
-@SessionAttributes(value={"plate","plateEdit"}, types={String.class})
-public class PlateController {
+@RequestMapping("/zheye-forum/board")
+@SessionAttributes(value = {"plate", "plateEdit"}, types = {String.class})
+public class BoardController {
 	@Autowired
 	PlateService plateService;
 
 	/**
 	 * 添加板块信息
+	 *
 	 * @param request
 	 * @return
 	 */
-	@PostMapping("/setPlate")
+	@PostMapping("/setBoard")
 	@ResponseBody
 	public ReturnT<?> setPlate(HttpServletRequest request) {
 		try {
-			Plate plate_add=new Plate();
+			Plate plate_add = new Plate();
 			//不知为何，Plate plate_add获取的值永远不是提交过来的结果，所以使用request.getParameter("bname")来获取
 			plate_add.setBname(request.getParameter("bname"));
-			if (plateService.getPlateName(plate_add).size() == 0) {	// 该版块名不存在
+			if (plateService.getPlateName(plate_add).size() == 0) {    // 该版块名不存在
 				plate_add.setBid(UUIDUtil.getRandomUUID());
 				plateService.setPlate(plate_add);
 				return ReturnT.success("添加板块成功");
@@ -47,14 +51,15 @@ public class PlateController {
 
 	/**
 	 * 按bid删除板块信息
+	 *
 	 * @param bid
 	 * @return
 	 */
-	@DeleteMapping("/deletePlate/{bid}")
+	@DeleteMapping("/deleteBoard/{bid}")
 	@ResponseBody
 	public ReturnT<?> deletePlate(@PathVariable String bid) {
 		try {
-			Plate plate_delete=new Plate();
+			Plate plate_delete = new Plate();
 			plate_delete.setBid(bid);
 			plateService.deletePlate(plate_delete);
 			return ReturnT.success("删除板块成功");
@@ -66,17 +71,18 @@ public class PlateController {
 
 	/**
 	 * 修改板块
+	 *
 	 * @param request
 	 * @return
 	 */
-	@PutMapping("/updatePlate")
+	@PutMapping("/updateBoard")
 	@ResponseBody
 	public ReturnT<?> updatePlate(HttpServletRequest request) {
 		try {
-			Plate plate=new Plate();
+			Plate plate = new Plate();
 			plate.setBid(request.getParameter("bid"));
 			plate.setBname(request.getParameter("bname"));
-			if(plateService.getPlateName(plate).size() == 0) {	// 该版块名不存在
+			if (plateService.getPlateName(plate).size() == 0) {    // 该版块名不存在
 				plateService.updatePlate(plate);
 				return ReturnT.success("修改板块成功");
 			}else {
@@ -91,12 +97,12 @@ public class PlateController {
 	/**
 	 * 查询板块信息（无条件）
 	 */
-	@GetMapping("/getPlate")
+	@GetMapping("/getBoard")
 	@ResponseBody
 	public ReturnT<?> getPlate() {
 		Map<String, Object> map = new HashMap<>();
 		try {
-			map.put("plate",plateService.getPlate());
+			map.put("plate", plateService.getPlate());
 			// 总板块数
 			map.put("total", plateService.getCount());
 			return new ReturnT<>(HttpStatus.OK, "获取板块数据成功", map);

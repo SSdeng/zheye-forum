@@ -16,7 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/api/rest/nanshengbbs/v3.0/comment")
+/**
+ * 评论控制类
+ *
+ * @author lijiacheng
+ */
+@RequestMapping("/zheye-forum/comment")
 @Controller
 public class CommentController {
 	@Autowired
@@ -62,7 +67,7 @@ public class CommentController {
 			return ReturnT.fail("删除评论失败");
 		}
 	}
-	
+
 	/**
 	 * 按文章id（fid）获取评论表信息
 	 * @param fid

@@ -20,7 +20,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("/api/rest/nanshengbbs/v3.0/user")
+/**
+ * 用户控制类
+ *
+ * @author dengzhijian
+ */
+@RequestMapping("/zheye-forum/user")
 @SessionAttributes(value = {"userid", "username", "email", "userPhoto"})
 @Controller
 public class UserController {
@@ -377,7 +382,7 @@ public class UserController {
 			return ReturnT.fail("处理跳转失败");
 		}
 	}
-	
+
 	/**
 	 * 查询用户信息（分页）
 	 * @param pageStart

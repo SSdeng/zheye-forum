@@ -14,8 +14,13 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 管理员控制类
+ *
+ * @author
+ */
 @Controller
-@RequestMapping("/api/rest/nanshengbbs/v3.0/admin")
+@RequestMapping("/zheye-forum/admin")
 @SessionAttributes(value = {"sessionAname", "sessionAcreateTime"})
 public class AdminController {
 	@Autowired
@@ -73,10 +78,10 @@ public class AdminController {
 			return ReturnT.fail("获取仪表盘数据失败");
 		}
 	}
-	
+
 	/**
 	 * 退出管理员登录
-	 * 
+	 *
 	 * @param session
 	 * @return
 	 */

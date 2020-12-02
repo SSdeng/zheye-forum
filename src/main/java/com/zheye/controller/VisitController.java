@@ -17,7 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("/api/rest/nanshengbbs/v3.0/visit")
+/**
+ * 访问信息控制类
+ */
+@RequestMapping("/zheye-forum/visit")
 @SessionAttributes(value = "sessionIp")
 @Controller
 public class VisitController {

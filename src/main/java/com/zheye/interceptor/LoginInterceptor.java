@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * @author maliang
- * @create 2019-11-27 22:30
+ * 实现对部分请求的拦截，这些请求需要用户先登录验证验证权限
+ *
+ * @author dengzhijian
  */
 public class LoginInterceptor implements HandlerInterceptor {
     @Override

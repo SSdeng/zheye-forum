@@ -19,9 +19,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("/tbPhotoController")
+/**
+ * 照片控制类
+ */
+@RequestMapping("/zheye-forum/photo")
 @Controller
-public class TbPhotoController {
+public class PhotoController {
 	@Autowired
 	TbPhotoService tbPhotoService;
 	@Autowired
@@ -33,6 +36,7 @@ public class TbPhotoController {
 
 	/**
 	 * 上传照片
+	 *
 	 * @param file
 	 * @param request
 	 * @param session
@@ -40,7 +44,7 @@ public class TbPhotoController {
 	 * @return
 	 * @throws IOException
 	 */
-	@PostMapping("/setTbPhoto/{fid}")
+	@PostMapping("/setPhoto/{fid}")
 	@ResponseBody
 	public ReturnT<?> setTbPhoto(@RequestParam("photo") MultipartFile file, HttpServletRequest request, HttpSession session, @PathVariable String fid) {
 		try {
@@ -49,7 +53,7 @@ public class TbPhotoController {
 			// 上传源文件允许的最大值
 			long fileLength = thumbnailatorUtil.getFileLength();
 			if (currentFileSize <= fileLength) {
-				TbPhoto tbPhoto=new TbPhoto();
+				TbPhoto tbPhoto = new TbPhoto();
 				tbPhoto.setPhoto(fileUploadUtil.fileUpload(file, pathUtil.getPhotoPath()));
 				tbPhoto.setFid(fid);
 				tbPhoto.setUserid((String) session.getAttribute("userid"));
@@ -69,10 +73,11 @@ public class TbPhotoController {
 
 	/**
 	 * 删除某一张照片
+	 *
 	 * @param xid
 	 * @return
 	 */
-	@DeleteMapping("/deleteTbPhoto/{xid}")
+	@DeleteMapping("/deletePhoto/{xid}")
 	@ResponseBody
 	public ReturnT<?> deleteTbPhoto(@PathVariable String xid, HttpServletRequest request) {
 		try {
@@ -87,16 +92,17 @@ public class TbPhotoController {
 
 	/**
 	 * 获取相册分类下的对应的照片
-	 * @param fid 相册id
+	 *
+	 * @param fid     相册id
 	 * @param session
 	 * @return
 	 */
-	@GetMapping("/getTbPhoto/{fid}")
+	@GetMapping("/getPhoto/{fid}")
 	@ResponseBody
 	public ReturnT<?> getTbPhoto(@PathVariable String fid, HttpSession session) {
 		Map<String, Object> map = new HashMap<>();
 		try {
-			TbPhoto tbPhoto=new TbPhoto(fid, (String)session.getAttribute("userid"));
+			TbPhoto tbPhoto = new TbPhoto(fid, (String) session.getAttribute("userid"));
 			map.put("listTbPhotos", tbPhotoService.getTbPhoto(tbPhoto));
 			return new ReturnT<>(HttpStatus.OK, "获取照片数据成功", map);
 		} catch (Exception e) {

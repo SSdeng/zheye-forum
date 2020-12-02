@@ -15,26 +15,30 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("/api/rest/nanshengbbs/v3.0/photoPro")
+/**
+ * 相册控制类
+ */
+@RequestMapping("/zheye-forum/album")
 @Controller
-public class PhotoProController {
+public class AlbumController {
 	@Autowired
 	PhotoProService photoProService;
 	@Autowired
 	TbPhotoService tbPhotoService;
-	
+
 	/**
 	 * 创建相册
+	 *
 	 * @param photoPro
 	 * @param session
 	 * @return
 	 */
-	@PostMapping("/setPhotoPro")
+	@PostMapping("/setAlbum")
 	@ResponseBody
 	public ReturnT<?> setPhotoPro(PhotoPro photoPro, HttpSession session) {
 		try {
 			photoPro.setUserid((String) session.getAttribute("userid"));
-			if (photoProService.selectByName(photoPro).size() == 0){	// 不存在该相册名
+			if (photoProService.selectByName(photoPro).size() == 0) {    // 不存在该相册名
 				photoPro.setFid(UUIDUtil.getRandomUUID());
 				photoProService.setPhotoPro(photoPro);
 				return ReturnT.success("创建相册成功");
@@ -49,9 +53,10 @@ public class PhotoProController {
 
 	/**
 	 * 删除相册
+	 *
 	 * @return
 	 */
-	@DeleteMapping("/deletePhotoPro")
+	@DeleteMapping("/deleteAlbum")
 	@ResponseBody
 	public ReturnT<?> deletePhotoPro(HttpServletRequest request) {
 		try {
@@ -67,9 +72,10 @@ public class PhotoProController {
 
 	/**
 	 * 编辑相册
+	 *
 	 * @return
 	 */
-	@PutMapping("/updatePhotoPro")
+	@PutMapping("/updateAlbum")
 	@ResponseBody
 	public ReturnT<?> updatePhotoPro(PhotoPro photoPro, HttpSession session) {
 		try {
@@ -88,9 +94,10 @@ public class PhotoProController {
 
 	/**
 	 * 获取相册信息
+	 *
 	 * @return
 	 */
-	@GetMapping("/getPhoto")
+	@GetMapping("/getAlbum")
 	@ResponseBody
 	public ReturnT<?> getPhoto(HttpSession session) {
 		Map<String, Object> map = new HashMap<>();
@@ -106,9 +113,10 @@ public class PhotoProController {
 
 	/**
 	 * 按fid（相册id）获取相册信息
+	 *
 	 * @return
 	 */
-	@GetMapping("/getPhotoProFid/{fid}")
+	@GetMapping("/getAlbumFid/{fid}")
 	@ResponseBody
 	public ReturnT<?> selectByPrimaryKey(@PathVariable String fid) {
 		Map<String, Object> map = new HashMap<>();

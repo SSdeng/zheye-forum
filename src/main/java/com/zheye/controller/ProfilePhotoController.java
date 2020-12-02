@@ -17,10 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@RequestMapping("/api/rest/nanshengbbs/v3.0/via")
-@SessionAttributes("userPhoto")
+/**
+ * 用户头像控制类
+ */
+@RequestMapping("/zheye-forum/profilePhoto")
+@SessionAttributes("profilePhoto")
 @Controller
-public class ViaController {
+public class ProfilePhotoController {
 	@Autowired
 	ViaService viaService;
 	@Autowired
@@ -29,17 +32,18 @@ public class ViaController {
 	PathUtil pathUtil;
 	@Autowired
 	ThumbnailatorUtil thumbnailatorUtil;
-	
+
 	/**
 	 * 上传用户头像（插入、修改）
+	 *
 	 * @param file
 	 * @param session
 	 * @return
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	@PostMapping("/setUserPhoto")
+	@PostMapping("/setProfilePhoto")
 	@ResponseBody
-	public ReturnT<?> setUserPhoto(@RequestParam("photo") MultipartFile file, HttpSession session, HttpServletRequest request, Model model)  {
+	public ReturnT<?> setUserPhoto(@RequestParam("photo") MultipartFile file, HttpSession session, HttpServletRequest request, Model model) {
 		try {
 			// 当前文件大小
 			long currentFileSize = file.getSize();
@@ -59,14 +63,14 @@ public class ViaController {
 					via.setPhoto(newFileName);
 					// 将via保存到数据库
 					viaService.setVia(via);
-				} else {	//如果该用户上传过头像，则进行修改操作
+				} else {    //如果该用户上传过头像，则进行修改操作
 					// 保存文件
 					newFileName = fileUploadUtil.fileUpload(file, pathUtil.getUserPath());
 					via.setPhoto(newFileName);
 					// 将via保存到数据库(修改)
 					viaService.updateVia(via);
 				}
-				model.addAttribute("userPhoto", newFileName);
+				model.addAttribute("profilePhoto", newFileName);
 
 				return new ReturnT<>(HttpStatus.OK, "修改头像成功", newFileName);
 			} else {

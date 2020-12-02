@@ -23,7 +23,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/api/rest/nanshengbbs/v3.0/article")
+/**
+ * 文章控制类
+ *
+ * @author dengzhijian
+ */
+@RequestMapping("/zheye-forum/article")
 @Controller
 public class ArticleController {
 	private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
@@ -418,7 +423,7 @@ public class ArticleController {
 			return ReturnT.fail("获取文章和板块信息失败");
 		}
 	}
-	
+
 	/**
 	 * 按fid获取文章信息
 	 * @return
@@ -452,11 +457,12 @@ public class ArticleController {
 
 	/**
 	 * 热门文章
+	 *
 	 * @return
 	 */
 	@GetMapping("/getHotArticle")
 	@ResponseBody
-    public ReturnT<?> getHotArticle() {
+	public ReturnT<?> getHotArticle() {
 		Map<String, Object> map = new HashMap<>();
 		try {
 			List<Article> listHotArticle = articleService.getHotArticle();
@@ -466,5 +472,5 @@ public class ArticleController {
 			e.printStackTrace();
 			return ReturnT.fail("获取热门文章数据失败");
 		}
-    }
+	}
 }
