@@ -104,7 +104,7 @@ config = {
 	blocking: true,
 
 	// when enabled, show only failing tests
-	// gets persisted through sessionStorage and can be changed in UI via checkbox
+	// gets persisted through sessionStorage and can be changed in UI profilePhoto checkbox
 	hidepassed: false,
 
 	// by default, run previously failed tests first

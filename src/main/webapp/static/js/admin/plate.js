@@ -1,9 +1,9 @@
 /* 板块新增预览 */
-function onkeyupPlateAdd() {
+function onkeyupBoardAdd() {
     var bname = $.trim($("#bname_Add").val());   //去掉前后空格
     var count_num = chEnWordCount(bname);
-    if (count_num > plateNameLength){
-        layer.tips('不能超过【'+plateNameLength+'】个字符，当前数 - '+count_num, '#bname_Add', {
+    if (count_num > boardNameLength){
+        layer.tips('不能超过【'+boardNameLength+'】个字符，当前数 - '+count_num, '#bname_Add', {
             tips: [1, '#ff6620'] //还可配置颜色
         });
         return false;
@@ -15,7 +15,7 @@ function onkeyupPlateAdd() {
     }
 }
 /*新增板块信息*/
-function plateAdd(){
+function boardAdd(){
     var bname = $.trim($("#bname_Add").val());   //去掉前后空格
     if (bname == ""){
         layer.tips('请输入板块名', '#bname_Add', {
@@ -23,13 +23,13 @@ function plateAdd(){
         });
         return false;
     }
-    if (!onkeyupPlateAdd()){
+    if (!onkeyupBoardAdd()){
         return false;
     }
     //调ajax
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/plate/setPlate",
-        data: $('#form_addPlate').serialize(),
+        url: APP_PATH + "/zheye-forum/board/setBoard",
+        data: $('#form_addBoard').serialize(),
         type: "POST",
         dataType: "json",
         success: function(data){
@@ -38,9 +38,9 @@ function plateAdd(){
             // 提示信息
             var msg = data.msg;
             if (code == 200) {
-                $('#plate_Add').modal('hide');     // 关闭模态框
+                $('#board_Add').modal('hide');     // 关闭模态框
                 $.ajax({
-                    url: APP_PATH + "/api/rest/nanshengbbs/v3.0/plate/getPlate",
+                    url: APP_PATH + "/zheye-forum/board/getBoard",
                     type: "get",
                     dataType: "json",
                     success: function(data){
@@ -50,9 +50,9 @@ function plateAdd(){
                         var msg = data.msg;
                         if (code == 200) {
                             /*########################################### 板块管理 ############################################################*/
-                            $("#plate_all").html(getPlateList(data.data));
+                            $("#board_all").html(getBoardList(data.data));
                             //板块总数
-                            $("#plate_total").html('（' + data.data.total + '类）');
+                            $("#board_total").html('（' + data.data.total + '类）');
                             /*########################################### 板块管理-end ############################################################*/
                         } else if (code == 500) {
                             layer.msg(msg,{icon: 5});
@@ -79,11 +79,11 @@ function plateAdd(){
 
 
 /* 板块修改预览 */
-function onkeyupPlateUpdate() {
-    var bname = $.trim($("#plateEdit_new_name").val());   //去掉前后空格
+function onkeyupBoardUpdate() {
+    var bname = $.trim($("#boardEdit_new_name").val());   //去掉前后空格
     var count_num = chEnWordCount(bname);
-    if (count_num > plateNameLength){
-        layer.tips('不能超过【'+plateNameLength+'】个字符，当前数 - '+count_num, '#plateEdit_new_name', {
+    if (count_num > boardNameLength){
+        layer.tips('不能超过【'+boardNameLength+'】个字符，当前数 - '+count_num, '#boardEdit_new_name', {
             tips: [1, '#ff6620'] //还可配置颜色
         });
         return false;
@@ -95,24 +95,24 @@ function onkeyupPlateUpdate() {
     }
 }
 /*板块显示-修改*/
-function plateShow(bid, bname){
+function boardShow(bid, bname){
     // 原板块名
-    $("#plateEdit_name").html(bname);
+    $("#boardEdit_name").html(bname);
     // 新板块输入框
-    $("#plateEdit_new_name").attr("onkeyup", "onkeyupPlateUpdate()");
+    $("#boardEdit_new_name").attr("onkeyup", "onkeyupBoardUpdate()");
     // 确定修改
-    $("#plateEdit_submit").attr("onclick", "plateUpdate('" + bid + "')");
+    $("#boardEdit_submit").attr("onclick", "boardUpdate('" + bid + "')");
 }
 /*修改板块信息*/
-function plateUpdate(bid){
-    var bname = $.trim($("#plateEdit_new_name").val());   //去掉前后空格
+function boardUpdate(bid){
+    var bname = $.trim($("#boardEdit_new_name").val());   //去掉前后空格
     if (bname == ""){
-        layer.tips('请输入板块名', '#plateEdit_new_name', {
+        layer.tips('请输入板块名', '#boardEdit_new_name', {
             tips: [1, '#ff6620'] //还可配置颜色
         });
         return false;
     }
-    if (!onkeyupPlateUpdate()){
+    if (!onkeyupBoardUpdate()){
         return false;
     }
     var data = {
@@ -121,7 +121,7 @@ function plateUpdate(bid){
     }
     //调ajax
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/plate/updatePlate",
+        url: APP_PATH + "/zheye-forum/board/updateBoard",
         data: data,
         type: "put",
         dataType: "json",
@@ -131,9 +131,9 @@ function plateUpdate(bid){
             // 提示信息
             var msg = data.msg;
             if (code == 200) {
-                $('#plate_Update').modal('hide');     // 关闭模态框
+                $('#board_Update').modal('hide');     // 关闭模态框
                 $.ajax({
-                    url: APP_PATH + "/api/rest/nanshengbbs/v3.0/plate/getPlate",
+                    url: APP_PATH + "/zheye-forum/board/getBoard",
                     type: "get",
                     dataType: "json",
                     success: function(data){
@@ -143,9 +143,9 @@ function plateUpdate(bid){
                         var msg = data.msg;
                         if (code == 200) {
                             /*########################################### 板块管理 ############################################################*/
-                            $("#plate_all").html(getPlateList(data.data));
+                            $("#board_all").html(getBoardList(data.data));
                             //板块总数
-                            $("#plate_total").html('（' + data.data.total + '类）');
+                            $("#board_total").html('（' + data.data.total + '类）');
                             /*########################################### 板块管理-end ############################################################*/
                         } else if (code == 500) {
                             layer.msg(msg,{icon: 5});
@@ -157,7 +157,7 @@ function plateUpdate(bid){
                 });
                 layer.msg(msg);
             } else if (code == 404) {
-                layer.tips(msg, '#plateEdit_new_name', {
+                layer.tips(msg, '#boardEdit_new_name', {
                     tips: [1, '#ff6620'] //还可配置颜色
                 });
             } else if (code == 500) {
@@ -180,15 +180,15 @@ function b_del(bid) {
     }, function(){
         //点击确后关闭提示框
         layer.closeAll('dialog');
-        plateDel(bid);
+        boardDel(bid);
     });
 }
 /*删除板块信息*/
-function plateDel(bid) {
+function boardDel(bid) {
     //调ajax
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/plate/deletePlate/"+bid,
-        data: $('#form_delPlate').serialize(),
+        url: APP_PATH + "/zheye-forum/board/deleteBoard/"+bid,
+        data: $('#form_delBoard').serialize(),
         type: "delete",
         dataType: "json",
         success: function(data){
@@ -197,9 +197,9 @@ function plateDel(bid) {
             // 提示信息
             var msg = data.msg;
             if (code == 200) {
-                $('#plate_Add').modal('hide');     // 关闭模态框
+                $('#board_Add').modal('hide');     // 关闭模态框
                 $.ajax({
-                    url: APP_PATH + "/api/rest/nanshengbbs/v3.0/plate/getPlate",
+                    url: APP_PATH + "/zheye-forum/board/getBoard",
                     type: "get",
                     dataType: "json",
                     success: function(data){
@@ -209,9 +209,9 @@ function plateDel(bid) {
                         var msg = data.msg;
                         if (code == 200) {
                             /*########################################### 板块管理 ############################################################*/
-                            $("#plate_all").html(getPlateList(data.data));
+                            $("#board_all").html(getBoardList(data.data));
                             //板块总数
-                            $("#plate_total").html('（' + data.data.total + '类）');
+                            $("#board_total").html('（' + data.data.total + '类）');
                             /*########################################### 板块管理-end ############################################################*/
                         } else if (code == 500) {
                             layer.msg(msg,{icon: 5});

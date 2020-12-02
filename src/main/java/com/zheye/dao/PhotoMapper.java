@@ -1,13 +1,13 @@
 package com.zheye.dao;
 
-import com.zheye.bean.TbPhoto;
+import com.zheye.bean.Photo;
 
 import java.util.List;
 
-public interface TbPhotoMapper {
+public interface PhotoMapper {
 
     // 上传照片
-    void insert(TbPhoto record);
+    void insert(Photo record);
 
     // 删除某一张照片
     void deleteByKey(String xid);
@@ -16,8 +16,8 @@ public interface TbPhotoMapper {
     void deleteByFid(String fid);
 
     // 按xid查询照片信息
-    TbPhoto selectTbPhotoByKey(String xid);
+    Photo selectPhotoByKey(String xid);
 
     // 获取相册分类下的对应的照片
-	List<TbPhoto> selectTbPhotoByFU(TbPhoto tbPhoto);
+	List<Photo> selectPhotoByFU(Photo photo);
 }

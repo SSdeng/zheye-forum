@@ -1,12 +1,12 @@
 // 构造【照片】信息
 function getPhoto(data, fid) {
-    var photoPro = data.photoPro;
-    var name = photoPro.name;
+    var album = data.album;
+    var name = album.name;
     // 相册名
     $("#showPhoto_name").html("【" + name + "】");
 
     $.ajax({
-        url: APP_PATH + "/tbPhotoController/getTbPhoto/" + fid,
+        url: APP_PATH + "/photoController/getPhoto/" + fid,
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -16,14 +16,14 @@ function getPhoto(data, fid) {
             var msg = data.msg;
             if (code == 200) {
                 var showPhoto_all = "";
-                var listTbPhotos = data.data.listTbPhotos;
+                var listPhotos = data.data.listPhotos;
 
                 // 编辑相册
                 $("#albumEdit_button").attr("onclick", "albumEditShow('" + fid + "')");
                 // 上传照片
                 $("#photoAdd_button").attr("onclick", "photoAddShow('" + fid + "','" + name + "')");
 
-                if (listTbPhotos.length == 0){  // 该相册下无照片
+                if (listPhotos.length == 0) {  // 该相册下无照片
                     $("#photo_null").show();
                     $("#photo_all").hide();
                     // 上传照片
@@ -31,16 +31,16 @@ function getPhoto(data, fid) {
                 } else {    // 该相册下有照片
                     $("#photo_null").hide();
                     $("#photo_all").show();
-                    for (var i=0; i<listTbPhotos.length; i++){
-                        var listTbPhoto = listTbPhotos[i];
+                    for (var i = 0; i < listPhotos.length; i++) {
+                        var listPhoto = listPhotos[i];
                         // 照片展示
-                        var showPhoto_Xid_id = "showPhoto_Xid_" + listTbPhoto.xid;
+                        var showPhoto_Xid_id = "showPhoto_Xid_" + listPhoto.xid;
                         $("#showPhoto_Xid").attr("id", showPhoto_Xid_id);
                         // 照片
-                        $("#showPhoto_a").attr("href", listTbPhoto.photo);
-                        $("#showPhoto_a img").attr("src", listTbPhoto.photo);
+                        $("#showPhoto_a").attr("href", listPhoto.photo);
+                        $("#showPhoto_a img").attr("src", listPhoto.photo);
                         // 删除
-                        $("#showPhoto_del").attr("onclick", "deletePhoto('" + listTbPhoto.xid + "')");
+                        $("#showPhoto_del").attr("onclick", "deletePhoto('" + listPhoto.xid + "')");
 
                         showPhoto_all = showPhoto_all + $("#showPhoto_hide").html();
 

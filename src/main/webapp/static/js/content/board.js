@@ -16,7 +16,7 @@ function getBid(bid, bname) {
 
     $.ajax({
         //几个参数需要注意一下
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/getArticleBid/" + bid ,
+        url: APP_PATH + "/zheye-forum/article/getArticleBid/" + bid ,
         type: "get",//方法类型
         dataType: "json",//预期服务器返回的数据类型
         success: function (data) {
@@ -31,7 +31,7 @@ function getBid(bid, bname) {
                 data = data.data;
                 var articles = data.listArticle;
 
-                layer.tips('【' + bname + '】下共 ' + data.plateArticleCount + ' 条文章', '#articles_all',{
+                layer.tips('【' + bname + '】下共 ' + data.boardArticleCount + ' 条文章', '#articles_all',{
                     tips: [1, '#37afff'] //还可配置颜色
                 });
 
@@ -69,23 +69,23 @@ function getBid(bid, bname) {
 
 /**
  * 板块展示
- * @param plates
+ * @param boards
  */
-function getPlate(plates) {
+function getBoard(boards) {
     // 此处进行循环展示-板块
-    var plates_all = "";
+    var boards_all = "";
     var num = 0; //计数
-    for (var i = 0; i < plates.length; i++) {
-        var plate = plates[i];
+    for (var i = 0; i < boards.length; i++) {
+        var board = boards[i];
         num++;
-        $("#plates_all_a").attr("onclick", "getBid('" + plate.bid + "','" + plate.bname + "')");
-        $("#plates_all_bname").html(plate.bname);
+        $("#boards_all_a").attr("onclick", "getBid('" + board.bid + "','" + board.bname + "')");
+        $("#boards_all_bname").html(board.bname);
         <!-- 每循环3次就加一些跳行符 -->
         if (num % 3 == 0) {
-            // $("#plates_all_hide").append("<br><br><br><br>");
+            // $("#boards_all_hide").append("<br><br><br><br>");
         }
 
-        plates_all = plates_all + $("#plates_all_hide").html();
+        boards_all = boards_all + $("#boards_all_hide").html();
     }
-    $("#plates_all").html(plates_all);
+    $("#boards_all").html(boards_all);
 }

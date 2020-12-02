@@ -14,7 +14,7 @@ function user_del(userid, pageStart) {
 /*删除用户信息*/
 function userDel(userid, pageStart) {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/deleteUser/"+userid,
+        url: APP_PATH + "/zheye-forum/user/deleteUser/"+userid,
         type: "delete",
         dataType: "json",
         success: function (data) {
@@ -24,7 +24,7 @@ function userDel(userid, pageStart) {
             var msg = data.msg;
             if (code == 200) {
                 $.ajax({
-                    url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getUser?pageStart="+pageStart,
+                    url: APP_PATH + "/zheye-forum/user/getUser?pageStart="+pageStart,
                     type: "get",
                     dataType: "json",
                     success: function (data) {
@@ -63,7 +63,7 @@ function userDel(userid, pageStart) {
 /*分页操作*/
 function userPage(pageStart) {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getUser?pageStart="+pageStart,
+        url: APP_PATH + "/zheye-forum/user/getUser?pageStart="+pageStart,
         type: "get",
         dataType: "json",
         success: function (data) {

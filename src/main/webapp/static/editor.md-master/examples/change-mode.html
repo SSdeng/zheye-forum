@@ -205,7 +205,7 @@ puts "I still need " +
     $app->put('/api/products/remove/{id}', "delete_product");
 
     //Matches if the HTTP method is GET or POST
-    $app->map('/repos/store/refs')->via(array('GET', 'POST'));
+    $app->map('/repos/store/refs')->profilePhoto(array('GET', 'POST'));
     */
 
     $app->handle();

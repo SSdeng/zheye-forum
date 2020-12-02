@@ -1,7 +1,7 @@
 /*分页操作*/
 function visitPage(pageStart) {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/visit/getVisit?pageStart=" + pageStart,
+        url: APP_PATH + "/zheye-forum/visit/getVisit?pageStart=" + pageStart,
         type: "get",
         dataType: "json",
         success: function (data) {

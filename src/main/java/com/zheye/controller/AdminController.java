@@ -30,7 +30,7 @@ public class AdminController {
 	@Autowired
 	ArticleService articleService;
 	@Autowired
-	PlateService plateService;
+	BoardService boardService;
 	@Autowired
 	VisitService visitService;
 
@@ -63,14 +63,14 @@ public class AdminController {
 	 * 获取用户、文章、板块、访问总数
 	 * @return
 	 */
-	@GetMapping("/getUserArticlePlateVisitSum")
+	@GetMapping("/getUserArticleBoardVisitSum")
 	@ResponseBody
-	public ReturnT<?> getUserArticlePlateVisitSum() {
+	public ReturnT<?> getUserArticleBoardVisitSum() {
 		Map<String, Object> map = new HashMap<>();
 		try {
 			map.put("userSum", userService.getCount());
 			map.put("articleSum", articleService.getCount());
-			map.put("plateSum", plateService.getCount());
+			map.put("boardSum", boardService.getCount());
 			map.put("visitSum", visitService.getCount());
 			return new ReturnT<>(HttpStatus.OK, "获取仪表盘数据成功", map);
 		} catch (Exception e) {

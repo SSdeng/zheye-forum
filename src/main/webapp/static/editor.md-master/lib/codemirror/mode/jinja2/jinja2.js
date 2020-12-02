@@ -18,7 +18,7 @@
       "ifequal", "endifequal", "ifnotequal",
       "endifnotequal", "in", "include", "load", "not", "now", "or",
       "parsed", "regroup", "reversed", "spaceless",
-      "endspaceless", "ssi", "templatetag", "openblock",
+      "endspaceless", "ssi", "temboardtag", "openblock",
       "closeblock", "openvariable", "closevariable",
       "openbrace", "closebrace", "opencomment",
       "closecomment", "widthratio", "url", "with", "endwith",

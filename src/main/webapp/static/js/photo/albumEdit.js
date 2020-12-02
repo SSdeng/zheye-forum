@@ -18,7 +18,7 @@ function onkeyupAlbumNameUpadate() {
 /*修改相册*/
 function albumEditShow(fid) {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/photoPro/getPhotoProFid/" + fid,
+        url: APP_PATH + "/zheye-forum/album/getAlbumFid/" + fid,
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -27,8 +27,8 @@ function albumEditShow(fid) {
             // 提示信息
             var msg = data.msg;
             if (code == 200) {
-                var photoPro = data.data.photoPro;
-                var name = photoPro.name;
+                var album = data.data.album;
+                var name = album.name;
                 // 相册id
                 $("#album_fid").attr("value", fid);
                 // 相册名
@@ -64,7 +64,7 @@ function albumEdit(name) {
     }
 
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/photoPro/updatePhotoPro",
+        url: APP_PATH + "/zheye-forum/album/updateAlbum",
         type: "put",
         dataType: "json",
         data: $('#form_albumEdit').serialize(),

@@ -2598,7 +2598,7 @@
   content: "\f1bc";
 }
 
-.fa-deviantart:before {
+.fa-deprofilePhotontart:before {
   content: "\f1bd";
 }
 
@@ -3061,7 +3061,7 @@
   content: "\f236";
 }
 
-.fa-viacoin:before {
+.fa-profilePhotocoin:before {
   content: "\f237";
 }
 
@@ -4025,7 +4025,7 @@ ol.linenums {
   margin-bottom: 0;
 }
 
-/* IE indents via margin-left */
+/* IE indents profilePhoto margin-left */
 li.L0,
 li.L1,
 li.L2,

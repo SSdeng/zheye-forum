@@ -2,7 +2,7 @@ package com.zheye.bean;
 
 import java.util.Date;
 
-public class Via {
+public class ProfilePhoto {
     // 用户id
     private String userid;
     // 用户头像名
@@ -10,7 +10,7 @@ public class Via {
     // 用户头像更新时间
     private Date updateTime;
 
-	public Via() {
+	public ProfilePhoto() {
 		super();
 	}
 
@@ -40,7 +40,7 @@ public class Via {
 
     @Override
     public String toString() {
-        return "Via{" +
+        return "ProfilePhoto{" +
                 "userid='" + userid + '\'' +
                 ", photo='" + photo + '\'' +
                 ", updateTime=" + updateTime +

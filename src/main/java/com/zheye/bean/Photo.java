@@ -2,20 +2,34 @@ package com.zheye.bean;
 
 import java.util.Date;
 
-public class PhotoPro {
+public class Photo {
+    // 照片id
+    private String xid;
     // 相册id
     private String fid;
-    // 用户id
+    // 照片上传者
     private String userid;
-    // 相册名
-    private String name;
-    // 相册创建时间
+    // 照片名
+    private String photo;
+    // 照片上传时间
     private Date createTime;
-    // 相册更新时间
-    private Date updateTime;
 
-    public PhotoPro() {
+    public Photo() {
         super();
+    }
+
+    public Photo(String fid, String userid) {
+        super();
+        this.fid = fid;
+        this.userid = userid;
+    }
+
+    public String getXid() {
+        return xid;
+    }
+
+    public void setXid(String xid) {
+        this.xid = xid;
     }
 
     public String getFid() {
@@ -34,12 +48,12 @@ public class PhotoPro {
         this.userid = userid;
     }
 
-    public String getName() {
-        return name;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public Date getCreateTime() {
@@ -50,22 +64,14 @@ public class PhotoPro {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
     @Override
     public String toString() {
-        return "PhotoPro{" +
-                "fid='" + fid + '\'' +
+        return "Photo{" +
+                "xid='" + xid + '\'' +
+                ", fid='" + fid + '\'' +
                 ", userid='" + userid + '\'' +
-                ", name='" + name + '\'' +
+                ", photo='" + photo + '\'' +
                 ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
                 '}';
     }
 }

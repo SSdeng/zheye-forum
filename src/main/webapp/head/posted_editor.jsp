@@ -51,11 +51,11 @@
 
         <div class="form-group col-md-10 col-md-offset-1">
             <!-- 板块 - 模板 -->
-            <div id="posted_plate_hide" style="display: none;">
+            <div id="posted_board_hide" style="display: none;">
                 <option></option>
             </div>
             <!-- 板块-实际数据 -->
-            <select id="posted_plate_all" class="form-control" style="cursor:pointer;"></select>
+            <select id="posted_board_all" class="form-control" style="cursor:pointer;"></select>
         </div>
         <div id="my-editormd" style="z-index: 2000;">
             <textarea class="editormd-markdown-textarea" id="fcontent"></textarea>

@@ -1,7 +1,7 @@
 //我的相册-相册
 $(function () {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/photoPro/getPhoto",
+        url: APP_PATH + "/zheye-forum/album/getPhoto",
         type: "get",
         dataType: "json",
         success: function (data) {

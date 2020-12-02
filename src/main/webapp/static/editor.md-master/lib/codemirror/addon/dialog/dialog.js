@@ -11,7 +11,7 @@
   else // Plain browser env
     mod(CodeMirror);
 })(function(CodeMirror) {
-  function dialogDiv(cm, template, bottom) {
+  function dialogDiv(cm, temboard, bottom) {
     var wrap = cm.getWrapperElement();
     var dialog;
     dialog = wrap.appendChild(document.createElement("div"));
@@ -20,10 +20,10 @@
     else
       dialog.className = "CodeMirror-dialog CodeMirror-dialog-top";
 
-    if (typeof template == "string") {
-      dialog.innerHTML = template;
+    if (typeof temboard == "string") {
+      dialog.innerHTML = temboard;
     } else { // Assuming it's a detached DOM element.
-      dialog.appendChild(template);
+      dialog.appendChild(temboard);
     }
     return dialog;
   }
@@ -34,12 +34,12 @@
     cm.state.currentNotificationClose = newVal;
   }
 
-  CodeMirror.defineExtension("openDialog", function(template, callback, options) {
+  CodeMirror.defineExtension("openDialog", function(temboard, callback, options) {
     if (!options) options = {};
 
     closeNotification(this, null);
 
-    var dialog = dialogDiv(this, template, options.bottom);
+    var dialog = dialogDiv(this, temboard, options.bottom);
     var closed = false, me = this;
     function close(newVal) {
       if (typeof newVal == 'string') {
@@ -92,9 +92,9 @@
     return close;
   });
 
-  CodeMirror.defineExtension("openConfirm", function(template, callbacks, options) {
+  CodeMirror.defineExtension("openConfirm", function(temboard, callbacks, options) {
     closeNotification(this, null);
-    var dialog = dialogDiv(this, template, options && options.bottom);
+    var dialog = dialogDiv(this, temboard, options && options.bottom);
     var buttons = dialog.getElementsByTagName("button");
     var closed = false, me = this, blurring = 1;
     function close() {
@@ -129,9 +129,9 @@
    * If a notification is opened while another is opened, it will close the
    * currently opened one and open the new one immediately.
    */
-  CodeMirror.defineExtension("openNotification", function(template, options) {
+  CodeMirror.defineExtension("openNotification", function(temboard, options) {
     closeNotification(this, close);
-    var dialog = dialogDiv(this, template, options && options.bottom);
+    var dialog = dialogDiv(this, temboard, options && options.bottom);
     var closed = false, doneTimer;
     var duration = options && typeof options.duration !== "undefined" ? options.duration : 5000;
 

@@ -1,28 +1,28 @@
 package com.zheye.dao;
 
-import com.zheye.bean.Plate;
+import com.zheye.bean.Board;
 
 import java.util.List;
 
-public interface PlateMapper {
+public interface BoardMapper {
 
     // 新增板块
-    void insert(Plate record);
+    void insert(Board record);
 
     // 按bid删除板块信息
     void deleteByKey(String bid);
 
     // 修改板块
-    void updateByKey(Plate record);
+    void updateByKey(Board record);
 
     // 查询板块的所有信息
-    List<Plate> selectPlate();
+    List<Board> selectBoard();
     
     // 按板块名查询
-    List<Plate> selectPlateByName(Plate plate);
+    List<Board> selectBoardByName(Board board);
 
     // 按板块ID查询板块信息
-    Plate selectPlateByKey(String bid);
+    Board selectBoardByKey(String bid);
 
     // 总板块数
     int selectCount();

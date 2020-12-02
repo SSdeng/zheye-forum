@@ -1,12 +1,12 @@
 // 将用户头像显示到个人中心
 function getMePicture(user) {
     //判断头像显示
-    if (user.via == null){
+    if (user.profilePhoto == null){
         /* 默认头像 */
         $("#myself_userphoto_img").attr("src", APP_PATH +"/static/img/head.png");
     } else {
         /* 自定义头像 */
-        $("#myself_userphoto_img").attr("src", user.via.photo);
+        $("#myself_userphoto_img").attr("src", user.profilePhoto.photo);
     }
 }
 

@@ -25,7 +25,7 @@ $(function() {
           "username": name
         };
         $.ajax({
-            url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/updateUsername",
+            url: APP_PATH + "/zheye-forum/user/updateUsername",
             type: "put",
             data: data,
             dataType: "json",
@@ -80,7 +80,7 @@ $(function() {
             "passNew": passNew
         };
         $.ajax({
-            url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/updatePassword",
+            url: APP_PATH + "/zheye-forum/user/updatePassword",
             type: "post",
             data: data,
             dataType: "json",
@@ -139,7 +139,7 @@ $(function() {
           "email": email_new
         };
         $.ajax({
-            url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/updateEmail",
+            url: APP_PATH + "/zheye-forum/user/updateEmail",
             type: "put",
             data: data,
             dataType: "json",

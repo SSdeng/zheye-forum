@@ -10,7 +10,7 @@
 %>
 </head>
 <body>
-	<div class="modal fade" id="plate_Add" tabindex="-1" role="dialog"
+	<div class="modal fade" id="board_Add" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content col-md-10 col-md-offset-1">
@@ -23,16 +23,16 @@
 					<p class="text-center">有意思的板块名可以吸引更多的文章</p>
 				</div>
 				<div class="modal-body">
-					<form id="form_addPlate">
+					<form id="form_addBoard">
 						<p class="text-muted">板块名：</p>
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="取一个板块名吧"
-								id="bname_Add" name="bname" onkeyup="onkeyupPlateAdd()" required>
+								id="bname_Add" name="bname" onkeyup="onkeyupBoardAdd()" required>
 						</div>
 
 						<div class="modal-footer">
 							<button type="reset" class="btn btn-default">清空</button>
-							<button type="button" class="btn btn-primary" onclick="plateAdd()">确定</button>
+							<button type="button" class="btn btn-primary" onclick="boardAdd()">确定</button>
 						</div>
 					</form>
 				</div>

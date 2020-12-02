@@ -2,7 +2,7 @@ package com.zheye.bean;
 
 import java.util.Date;
 
-public class Plate {
+public class Board {
     // 板块id
     private String bid;
     // 板块名
@@ -12,7 +12,7 @@ public class Plate {
     // 板块更新时间
     private Date updateTime;
 
-    public Plate() {
+    public Board() {
 		super();
 	}
 
@@ -50,7 +50,7 @@ public class Plate {
 
     @Override
     public String toString() {
-        return "Plate{" +
+        return "Board{" +
                 "bid='" + bid + '\'' +
                 ", bname='" + bname + '\'' +
                 ", createTime=" + createTime +

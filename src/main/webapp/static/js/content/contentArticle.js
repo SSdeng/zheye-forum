@@ -5,7 +5,7 @@ $(function () {
     // 背景颜色设置为透明
     $("#content_left").css("background-color","transparent");
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/getArticleFid/" + fid ,
+        url: APP_PATH + "/zheye-forum/article/getArticleFid/" + fid ,
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -234,7 +234,7 @@ $(function () {
                 layer.msg(msg, {icon: 5});
             }
             // 板块展示
-            getPlate(data.plate);
+            getBoard(data.board);
             // 热门文章
             getHotArticle(data.listHotArticle);
             // 最新评论

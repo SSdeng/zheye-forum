@@ -55,10 +55,10 @@
 </textarea></form>
     <script>
       // Define an extended mixed-mode that understands vbscript and
-      // leaves mustache/handlebars embedded templates in html mode
+      // leaves mustache/handlebars embedded temboards in html mode
       var mixedMode = {
         name: "htmlmixed",
-        scriptTypes: [{matches: /\/x-handlebars-template|\/x-mustache/i,
+        scriptTypes: [{matches: /\/x-handlebars-temboard|\/x-mustache/i,
                        mode: null},
                       {matches: /(text|application)\/(x-)?vb(a|script)/i,
                        mode: "vbscript"}]

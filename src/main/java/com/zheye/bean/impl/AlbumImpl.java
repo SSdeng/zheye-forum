@@ -1,8 +1,8 @@
 package com.zheye.bean.impl;
 
-import com.zheye.bean.PhotoPro;
+import com.zheye.bean.Album;
 
-public class PhotoProImpl extends PhotoPro {
+public class AlbumImpl extends Album {
     // 图片名
     private String photo;
 
@@ -16,7 +16,7 @@ public class PhotoProImpl extends PhotoPro {
 
     @Override
     public String toString() {
-        return "PhotoProImpl{" +
+        return "AlbumImpl{" +
                 "photo='" + photo + '\'' +
                 '}';
     }

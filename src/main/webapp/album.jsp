@@ -19,8 +19,8 @@
 <jsp:include page="/head/setup.jsp"></jsp:include>
 
 <!-- 我的相册（相册）-主体内容 -->
-<jsp:include page="/photo/showAlbum.jsp"></jsp:include>
+<jsp:include page="/album/showAlbum.jsp"></jsp:include>
 <!-- 我的相册-创建相册 -->
-<jsp:include page="/photo/albumAdd.jsp"></jsp:include>
+<jsp:include page="/album/albumAdd.jsp"></jsp:include>
 </body>
 </html>

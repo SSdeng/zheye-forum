@@ -1,8 +1,8 @@
 package com.zheye.controller;
 
-import com.zheye.bean.Via;
+import com.zheye.bean.ProfilePhoto;
 import com.zheye.code.ReturnT;
-import com.zheye.service.ViaService;
+import com.zheye.service.ProfilePhotoService;
 import com.zheye.utils.FileUploadUtil;
 import com.zheye.utils.PathUtil;
 import com.zheye.utils.ThumbnailatorUtil;
@@ -25,7 +25,7 @@ import java.io.IOException;
 @Controller
 public class ProfilePhotoController {
 	@Autowired
-	ViaService viaService;
+	ProfilePhotoService profilePhotoService;
 	@Autowired
 	FileUploadUtil fileUploadUtil;
 	@Autowired
@@ -43,7 +43,7 @@ public class ProfilePhotoController {
 	 */
 	@PostMapping("/setProfilePhoto")
 	@ResponseBody
-	public ReturnT<?> setUserPhoto(@RequestParam("photo") MultipartFile file, HttpSession session, HttpServletRequest request, Model model) {
+	public ReturnT<?> setProfilePhoto(@RequestParam("photo") MultipartFile file, HttpSession session, HttpServletRequest request, Model model) {
 		try {
 			// 当前文件大小
 			long currentFileSize = file.getSize();
@@ -52,23 +52,23 @@ public class ProfilePhotoController {
 			if (currentFileSize <= fileLength) {
 				//肯定报错啊，int=null,,但是只有登录的时候才能进入该页面，故不用判断是否登录
 				String userid = (String) session.getAttribute("userid");
-				Via via = new Via();
-				via.setUserid(userid);
+				ProfilePhoto profilePhoto = new ProfilePhoto();
+				profilePhoto.setUserid(userid);
 
 				// 用于存放新生成的文件名字(不重复)
 				String newFileName;
-				if (viaService.getVia(userid) == null) {	//如果该用户还没有上传过头像，则进行新增操作
+				if (profilePhotoService.getProfilePhoto(userid) == null) {	//如果该用户还没有上传过头像，则进行新增操作
 					// 保存文件
 					newFileName = fileUploadUtil.fileUpload(file, pathUtil.getUserPath());
-					via.setPhoto(newFileName);
-					// 将via保存到数据库
-					viaService.setVia(via);
+					profilePhoto.setPhoto(newFileName);
+					// 将profilePhoto保存到数据库
+					profilePhotoService.setProfilePhoto(profilePhoto);
 				} else {    //如果该用户上传过头像，则进行修改操作
 					// 保存文件
 					newFileName = fileUploadUtil.fileUpload(file, pathUtil.getUserPath());
-					via.setPhoto(newFileName);
-					// 将via保存到数据库(修改)
-					viaService.updateVia(via);
+					profilePhoto.setPhoto(newFileName);
+					// 将profilePhoto保存到数据库(修改)
+					profilePhotoService.updateProfilePhoto(profilePhoto);
 				}
 				model.addAttribute("profilePhoto", newFileName);
 

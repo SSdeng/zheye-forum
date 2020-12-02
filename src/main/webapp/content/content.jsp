@@ -53,7 +53,7 @@
 <script src="${APP_PATH }/static/js/content/attention.js"></script>
 <script src="${APP_PATH }/static/js/content/collect.js"></script>
 <script src="${APP_PATH }/static/js/content/enjoy.js"></script>
-<script src="${APP_PATH }/static/js/content/plate.js"></script>
+<script src="${APP_PATH }/static/js/content/board.js"></script>
 <script src="${APP_PATH }/static/js/content/article.js"></script>
 <script src="${APP_PATH }/static/js/content/visit.js"></script>
 <script src="${APP_PATH }/static/js/content/common.js"></script>

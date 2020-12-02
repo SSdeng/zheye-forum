@@ -1,7 +1,7 @@
 function visitDay() {
     var n = 60;
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/visit/getVisitRecordDay/" + n,
+        url: APP_PATH + "/zheye-forum/visit/getVisitRecordDay/" + n,
         type: "get",
         dataType: "json",
         success: function (data) {

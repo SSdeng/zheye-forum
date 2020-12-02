@@ -1,17 +1,17 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="bbs-ssmv2.8.2:war exploded">
+  <artifact type="exploded-war" name="zheye-forum:war exploded">
     <output-path>$PROJECT_DIR$/target/bbs-ssmv2.8.2-0.0.1-SNAPSHOT</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
-        <module>bbs-ssmv2.8.2</module>
+        <module>zheye-forum</module>
         <packaging>war</packaging>
       </options>
     </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="bbs-ssmv2.8.2" />
+          <element id="module-output" name="zheye-forum" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.mybatis.generator:mybatis-generator-core:1.3.5" />
@@ -55,7 +55,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/bbs-ssmv2.8.2-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="bbs-ssmv2.8.2/web/Web" />
+      <element id="javaee-facet-resources" facet="zheye-forum/web/Web" />
     </root>
   </artifact>
 </component>

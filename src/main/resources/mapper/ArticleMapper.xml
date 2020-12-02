@@ -65,8 +65,8 @@
     select a.fid, a.titles, a.fcontent, a.photo, a.bid, a.userid, a.status, a.create_time, a.update_time, u.name,
            v.photo as userPhoto, p.bname, att.gid, c.sid, e.eid, count(com.pid) commentCount
     from article a left join user u on a.userid = u.userid
-             left join via v on u.userid = v.userid
-             left join plate p on a.bid = p.bid
+             left join profilePhoto v on u.userid = v.userid
+             left join board p on a.bid = p.bid
              left join attention att on a.userid = att.beuserid and att.userid = #{userid,jdbcType=VARCHAR}
              left join collect c on a.fid = c.fid and c.userid = #{userid,jdbcType=VARCHAR}
              left join enjoy e on a.fid = e.fid and e.userid = #{userid,jdbcType=VARCHAR}
@@ -84,7 +84,7 @@
     <select id="selectArticleImplPaging" parameterType="java.util.Map" resultType="com.zheye.bean.impl.ArticleImpl">
     select a.fid, a.titles, a.fcontent, a.photo, a.bid, a.userid, a.status, a.create_time, a.update_time, u.name, p.bname
     from article a left join user u on a.userid = u.userid
-         left join plate p on a.bid = p.bid
+         left join board p on a.bid = p.bid
     order by a.create_time desc
     limit #{offset},#{limit}
     </select>
@@ -93,7 +93,7 @@
     <select id="selectByArticleBid" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
       a.fid, a.titles, a.fcontent, a.photo, p.bname, a.create_time, a.userid, u.name as username, a.status,count(c.pid) sum,v.photo userphoto
-    from article a left join comment c on a.fid=c.fid left join via v on a.userid=v.userid left join plate p on a.bid=p.bid left join user u on a.userid=u.userid
+    from article a left join comment c on a.fid=c.fid left join profilePhoto v on a.userid=v.userid left join board p on a.bid=p.bid left join user u on a.userid=u.userid
     where a.bid = #{bid,jdbcType=VARCHAR} and a.status = 1
     group by a.fid
     order by a.create_time desc
@@ -127,8 +127,8 @@
     select a.fid, a.titles, a.fcontent, a.photo, a.bid, a.userid, a.status, a.create_time, a.update_time, u.name,
            v.photo as userPhoto, p.bname, att.gid, c.sid, e.eid, count(com.pid) commentCount
     from article a left join user u on a.userid = u.userid
-        left join via v on u.userid = v.userid
-        left join plate p on a.bid = p.bid
+        left join profilePhoto v on u.userid = v.userid
+        left join board p on a.bid = p.bid
         left join attention att on a.userid = att.beuserid and att.userid = #{userid,jdbcType=VARCHAR}
         left join collect c on a.fid = c.fid and c.userid = #{userid,jdbcType=VARCHAR}
         left join enjoy e on a.fid = e.fid and e.userid = #{userid,jdbcType=VARCHAR}

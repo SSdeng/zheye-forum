@@ -6,7 +6,7 @@ $(function () {
     var fid = decodeURI(twodata[1]); //decodeURI解码 - 相册id
 
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/photoPro/getPhotoProFid/" + fid,
+        url: APP_PATH + "/zheye-forum/album/getAlbumFid/" + fid,
         type: "get",
         dataType: "json",
         success: function (data) {

@@ -49,7 +49,7 @@
   <select id="selectCommentImplByFid" parameterType="java.lang.String" resultType="com.zheye.bean.impl.CommentImpl">
     select com.pid, com.pcontent, com.userid, com.fid, com.create_time, com.update_time, u.name, v.photo as userPhoto
     from comment com left join user u on com.userid = u.userid
-        left join via v on com.userid = v.userid
+        left join profilePhoto v on com.userid = v.userid
     where fid = #{fid,jdbcType=VARCHAR}
     order by create_time desc
   </select>

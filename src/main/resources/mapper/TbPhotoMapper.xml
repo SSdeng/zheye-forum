@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zheye.dao.TbPhotoMapper">
-  <resultMap id="BaseResultMap" type="com.zheye.bean.TbPhoto">
+<mapper namespace="com.zheye.dao.PhotoMapper">
+  <resultMap id="BaseResultMap" type="com.zheye.bean.Photo">
     <id column="xid" jdbcType="VARCHAR" property="xid" />
     <result column="fid" jdbcType="VARCHAR" property="fid" />
     <result column="userid" jdbcType="VARCHAR" property="userid" />
@@ -14,7 +14,7 @@
   </sql>
 
   <!-- 上传照片 -->
-  <insert id="insert" parameterType="com.zheye.bean.TbPhoto">
+  <insert id="insert" parameterType="com.zheye.bean.Photo">
     insert into tb_photo
     values (#{xid,jdbcType=VARCHAR},
             #{fid,jdbcType=VARCHAR},
@@ -36,7 +36,7 @@
   </delete>
 
   <!-- 按xid查询照片信息 -->
-  <select id="selectTbPhotoByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectPhotoByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_photo
@@ -44,7 +44,7 @@
   </select>
   
   <!-- 获取相册分类下的对应的照片 -->
-  <select id="selectTbPhotoByFU" parameterType="com.zheye.bean.TbPhoto" resultMap="BaseResultMap">
+  <select id="selectPhotoByFU" parameterType="com.zheye.bean.Photo" resultMap="BaseResultMap">
     select 
     tp.xid, tp.fid, tp.userid, tp.photo, tp.create_time, pr.name
     from tb_photo tp join photo_pro pr on tp.fid=pr.fid

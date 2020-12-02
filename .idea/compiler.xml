@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="bbs-ssmv2.8.2" />
+        <module name="zheye-forum" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="bbs-ssmv2.8.2" target="8" />
+      <module name="zheye-forum" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

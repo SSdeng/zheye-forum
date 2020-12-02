@@ -23,7 +23,7 @@ const userAgeSize = 120;
 // 相册名数限制（max）
 const albumNameLength = 20;
 // 板块名字数限制（max）
-const plateNameLength = 8;
+const boardNameLength = 8;
 
 /**
  * ajax默认设置 包括默认提交方式为POST， 判断后台是否是重定向
@@ -232,7 +232,7 @@ function getOther(userid, open) {
         //几个参数需要注意一下
         type: "get",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getOther/" + userid ,
+        url: APP_PATH + "/zheye-forum/user/getOther/" + userid ,
         success: function (data) {
             // 状态码
             var code = data.code;

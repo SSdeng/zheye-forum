@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>CodeMirror: Soy (Closure Template) mode</title>
+<title>CodeMirror: Soy (Closure Temboard) mode</title>
 <meta charset="utf-8"/>
 <link rel=stylesheet href="../../doc/docs.css">
 
@@ -23,19 +23,19 @@
   </ul>
   <ul>
     <li><a href="../index.html">Language modes</a>
-    <li><a class=active href="#">Soy (Closure Template)</a>
+    <li><a class=active href="#">Soy (Closure Temboard)</a>
   </ul>
 </div>
 
 <article>
-<h2>Soy (Closure Template) mode</h2>
+<h2>Soy (Closure Temboard) mode</h2>
 <form><textarea id="code" name="code">
 {namespace example}
 
 /**
  * Says hello to the world.
  */
-{template .helloWorld}
+{temboard .helloWorld}
   {@param name: string}
   {@param? score: number}
   Hello <b>{$name}</b>!
@@ -46,11 +46,11 @@
       no score
     {/if}
   </div>
-{/template}
+{/temboard}
 
-{template .alertHelloWorld kind="js"}
+{temboard .alertHelloWorld kind="js"}
   alert('Hello World');
-{/template}
+{/temboard}
 </textarea></form>
 
     <script>
@@ -63,6 +63,6 @@
       });
     </script>
 
-    <p>A mode for <a href="https://developers.google.com/closure/templates/">Closure Templates</a> (Soy).</p>
+    <p>A mode for <a href="https://developers.google.com/closure/temboards/">Closure Temboards</a> (Soy).</p>
     <p><strong>MIME type defined:</strong> <code>text/x-soy</code>.</p>
   </article>

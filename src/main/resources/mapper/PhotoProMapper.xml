@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zheye.dao.PhotoProMapper">
-  <resultMap id="BaseResultMap" type="com.zheye.bean.PhotoPro">
-    <id column="fid" jdbcType="VARCHAR" property="fid" />
-    <result column="userid" jdbcType="VARCHAR" property="userid" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+<mapper namespace="com.zheye.dao.AlbumMapper">
+  <resultMap id="BaseResultMap" type="com.zheye.bean.Album">
+    <id column="fid" jdbcType="VARCHAR" property="fid"/>
+    <result column="userid" jdbcType="VARCHAR" property="userid"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
   </resultMap>
 
   <sql id="Base_Column_List">
@@ -14,7 +14,7 @@
   </sql>
 
   <!-- 创建相册 -->
-  <insert id="insert" parameterType="com.zheye.bean.PhotoPro">
+  <insert id="insert" parameterType="com.zheye.bean.Album">
     insert into photo_pro
     values (#{fid,jdbcType=VARCHAR},
             #{userid,jdbcType=VARCHAR},
@@ -30,7 +30,7 @@
   </delete>
 
   <!-- 编辑相册 -->
-  <update id="updateNameByKey" parameterType="com.zheye.bean.PhotoPro">
+  <update id="updateNameByKey" parameterType="com.zheye.bean.Album">
     update photo_pro
     set name = #{name,jdbcType=VARCHAR},
         update_time = now()
@@ -38,7 +38,7 @@
   </update>
   
   <!-- 查询某用户的相册分类信息 -->
-  <select id="selectPhotoProImplByUserid" parameterType="java.lang.String" resultType="com.zheye.bean.impl.PhotoProImpl">
+  <select id="selectAlbumImplByUserid" parameterType="java.lang.String" resultType="com.zheye.bean.impl.AlbumImpl">
     select
     pr.fid, pr.userid, pr.name, pr.create_time, pr.update_time, tp.photo
     from photo_pro pr left join tb_photo tp on pr.fid=tp.fid
@@ -48,17 +48,17 @@
   </select>
 
   <!-- 按fid（相册id）查询相册信息 -->
-  <select id="selectPhotoProByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
+  <select id="selectAlbumByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
     from photo_pro
     where fid = #{fid,jdbcType=VARCHAR}
   </select>
 
   <!-- 按userid和name（相册名）查询相册信息 -->
-  <select id="selectPhotoProByUN" parameterType="com.zheye.bean.PhotoPro" resultMap="BaseResultMap">
+  <select id="selectAlbumByUN" parameterType="com.zheye.bean.Album" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
+    <include refid="Base_Column_List"/>
     from photo_pro
     where name = #{name,jdbcType=VARCHAR} and userid = #{userid,jdbcType=VARCHAR}
   </select>

@@ -1,7 +1,7 @@
 package com.zheye.controller;
 
 import com.zheye.bean.Article;
-import com.zheye.bean.Plate;
+import com.zheye.bean.Board;
 import com.zheye.bean.impl.ArticleImpl;
 import com.zheye.code.ReturnT;
 import com.zheye.service.*;
@@ -39,7 +39,7 @@ public class ArticleController {
 	@Autowired
 	CollectService collectService;
 	@Autowired
-	PlateService plateService;
+	BoardService boardService;
 	@Autowired
 	AttentionService attentionService;
 	@Autowired
@@ -47,7 +47,7 @@ public class ArticleController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	ViaService viaService;
+	ProfilePhotoService profilePhotoService;
 	@Autowired
 	VisitService visitService;
 	@Autowired
@@ -389,7 +389,7 @@ public class ArticleController {
 			// 获取文章数据
 			map.put("listArticle", articleService.getArticleBid(bid, 1, articlePageSize, (String) session.getAttribute("userid")));
 			// 该板块下文章总数
-			map.put("plateArticleCount", articleService.getPassArticleCountByBid(bid));
+			map.put("boardArticleCount", articleService.getPassArticleCountByBid(bid));
 			map.put("pageStart", 1);
 			return new ReturnT<>(HttpStatus.OK, "获取该板块下的文章信息成功", map);
 		} catch (Exception e) {
@@ -412,11 +412,11 @@ public class ArticleController {
 			// 实体类转Map
 			Map<String, Object> map = EntityMapUtils.entityToMap(article);
 			// 当前板块
-			map.put("currentPlate", plateService.getPlateId(article.getBid()));
+			map.put("currentBoard", boardService.getBoardId(article.getBid()));
 			resMap.put("article", map);
 			//无条件获取板块信息
-			List<Plate> plate=plateService.getPlate();
-			resMap.put("plate", plate);
+			List<Board> board=boardService.getBoard();
+			resMap.put("board", board);
 			return new ReturnT<>(HttpStatus.OK, "获取文章和板块信息成功", resMap);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -442,7 +442,7 @@ public class ArticleController {
 			// 最新评论
 			map.put("listNewComment", commentService.getNewComment());
 			// 查询板块信息（无条件）
-			map.put("plate", plateService.getPlate());
+			map.put("board", boardService.getBoard());
 			// 统计访问信息-国家
 			map.put("visitCountryCount",visitService.visitCountryStatistic());
 			// 统计访问信息-中国省份

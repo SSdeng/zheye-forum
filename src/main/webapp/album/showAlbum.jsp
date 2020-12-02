@@ -16,7 +16,8 @@
     <!-- 上部 -->
     <div class="row">
         <div class="col-md-4 col-xs-6">
-            <a href="javascript:void(0)" class="text-primary myself_page"><span class="glyphicon glyphicon-menu-left" style="  top: 2px;"></span> 我的主页</a>
+            <a href="javascript:void(0)" class="text-primary myself_page"><span class="glyphicon glyphicon-menu-left"
+                                                                                style="  top: 2px;"></span> 我的主页</a>
         </div>
         <br><br>
     </div>
@@ -25,10 +26,12 @@
     <div class="row">
         <!-- 新建相册按钮 -->
         <div class="col-md-2 col-xs-6">
-            <a href="#" data-toggle="modal" data-target="#photoProAdd">
-                <div style="position: relative;width: 160px;height:160px; background-color: #ffffff;" class="text-center img-thumbnail">
+            <a href="#" data-toggle="modal" data-target="#albumAdd">
+                <div style="position: relative;width: 160px;height:160px; background-color: #ffffff;"
+                     class="text-center img-thumbnail">
                     <br><br>
-                    <span class="col-md-12 col-xs-12 glyphicon glyphicon-plus text-primary" style="font-size: 30px;"></span>
+                    <span class="col-md-12 col-xs-12 glyphicon glyphicon-plus text-primary"
+                          style="font-size: 30px;"></span>
                     <span class="col-md-12 col-xs-12 text-primary" style="top: 10px;">新建相册</span>
                 </div>
             </a>

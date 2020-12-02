@@ -16,7 +16,7 @@ $(".cut-ybp").click(function() {
 /*########################################### 用户管理 ############################################################*/
 $(".cut-yhgl").click(function() {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getUser",
+        url: APP_PATH + "/zheye-forum/user/getUser",
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -45,7 +45,7 @@ $(".cut-yhgl").click(function() {
 /*########################################### 文章管理 ############################################################*/
 $(".cut-tzgl").click(function() {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/getArticleManagement",
+        url: APP_PATH + "/zheye-forum/article/getArticleManagement",
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -73,7 +73,7 @@ $(".cut-tzgl").click(function() {
 /*########################################### 板块管理 ############################################################*/
 $(".cut-bkgl").click(function() {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/plate/getPlate",
+        url: APP_PATH + "/zheye-forum/board/getBoard",
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -82,9 +82,9 @@ $(".cut-bkgl").click(function() {
             // 提示信息
             var msg = data.msg;
             if (code == 200) {
-                $("#plate_all").html(getPlateList(data.data));
+                $("#board_all").html(getBoardList(data.data));
                 //板块总数
-                $("#plate_total").html('（' + data.data.total + '类）');
+                $("#board_total").html('（' + data.data.total + '类）');
             } else if (code == 500) {
                 layer.msg(msg,{icon: 5});
             }
@@ -99,7 +99,7 @@ $(".cut-bkgl").click(function() {
 /*########################################### 访问管理 ############################################################*/
 $(".cut-fwjl").click(function() {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/visit/getVisit",
+        url: APP_PATH + "/zheye-forum/visit/getVisit",
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -135,7 +135,7 @@ $(".cut-fwjl").click(function() {
 function dashboard() {
     // 用户、文章、板块、访问总数
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/admin/getUserArticlePlateVisitSum",
+        url: APP_PATH + "/zheye-forum/admin/getUserArticleBoardVisitSum",
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -147,7 +147,7 @@ function dashboard() {
             if (code == 200) {
                 $("#h3-user").html(data.userSum);
                 $("#h3-article").html(data.articleSum);
-                $("#h3-plate").html(data.plateSum);
+                $("#h3-board").html(data.boardSum);
                 $("#h3-visit").html(data.visitSum);
             } else if (code == 500) {
                 layer.msg(msg,{icon: 5});
@@ -159,7 +159,7 @@ function dashboard() {
     });
     // 排行版
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getUserRankByArticleSum",
+        url: APP_PATH + "/zheye-forum/user/getUserRankByArticleSum",
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -179,7 +179,7 @@ function dashboard() {
     });
     // 新注册用户
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getNewUser",
+        url: APP_PATH + "/zheye-forum/user/getNewUser",
         type: "get",
         dataType: "json",
         success: function (data) {

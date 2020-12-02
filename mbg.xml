@@ -14,8 +14,8 @@
 
 		<!-- 配置数据库连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/bbs2" userId="root"
-			password="777888">
+						connectionURL="jdbc:mysql://localhost:3306/bbs2" userId="root"
+						password="dzj991118...">
 		</jdbcConnection>
 
 		<!-- Java类型解析（不用管） -->
@@ -37,8 +37,8 @@
 
 		<!-- 指定dao接口生成的位置，mapper接口 -->
 		<javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.zheye.dao" targetProject=".\src\main\java">
-			<property name="enableSubPackages" value="true" />
+							 targetPackage="com.zheye.dao" targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true"/>
 		</javaClientGenerator>
 
 		<!-- table指定每个表的生成策略 -->
@@ -46,8 +46,8 @@
 		<table tableName="admin" domainObjectName="Admin"></table>
 		<table tableName="article" domainObjectName="Article"></table>
 		<table tableName="comment" domainObjectName="Comment"></table>
-		<table tableName="plate" domainObjectName="Plate"></table>
-		<table tableName="via" domainObjectName="Via"></table>
+		<table tableName="board" domainObjectName="Board"></table>
+		<table tableName="profilePhoto" domainObjectName="ProfilePhoto"></table>
 		<table tableName="attention" domainObjectName="Attention"></table>
 		<table tableName="collect" domainObjectName="Collect"></table>
 		<table tableName="visit" domainObjectName="Visit"></table>

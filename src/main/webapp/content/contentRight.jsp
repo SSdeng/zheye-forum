@@ -16,16 +16,16 @@
         </div>
     </div>
     <!-- 板块展示-模板 -->
-    <div class="row" id="plates_all_hide" style="display: none">
+    <div class="row" id="boards_all_hide" style="display: none">
         <div class="col-xs-4 col-md-4 text-center">
-            <a id="plates_all_a" href="#">
+            <a id="boards_all_a" href="#">
                 <img class="img_right_logo_bankuai" src="${APP_PATH}/static/img/houtai.png">
-                <p id="plates_all_bname"></p>
+                <p id="boards_all_bname"></p>
             </a>
         </div>
     </div>
     <!-- 板块展示-实际数据 -->
-    <div class="row" id="plates_all"></div>
+    <div class="row" id="boards_all"></div>
     <div class="row" style="position: relative; background-color: #f6f6f6; height: 10px;"></div>
 
     <div class="row">

@@ -18,7 +18,7 @@ function userPhotoUpdate() {
         //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/via/setUserPhoto" ,
+        url: APP_PATH + "/zheye-forum/profilePhoto/setUserPhoto" ,
         data: formData ,
         // 告诉jQuery不要去处理发送的数据
         processData : false,
@@ -63,7 +63,7 @@ function userPhotoUpdate() {
                 $.ajax({
                     type: "get",//方法类型
                     dataType: "json",//预期服务器返回的数据类型
-                    url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getMyselfUser" ,
+                    url: APP_PATH + "/zheye-forum/user/getMyselfUser" ,
                     success: function (data) {
                         // 状态码
                         var code = data.code;
@@ -100,7 +100,7 @@ function editUser() {
         //几个参数需要注意一下
         type: "get",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getMyselfUser",
+        url: APP_PATH + "/zheye-forum/user/getMyselfUser",
         success: function (data) {
             // 状态码
             var code = data.code;
@@ -155,7 +155,7 @@ function updateUser() {
         //几个参数需要注意一下
         type: "put",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/updateUser" ,
+        url: APP_PATH + "/zheye-forum/user/updateUser" ,
         data: $('#form_userUpdate').serialize(),
         success: function (data) {
             // 状态码
@@ -168,7 +168,7 @@ function updateUser() {
                 $.ajax({
                     type: "get",//方法类型
                     dataType: "json",//预期服务器返回的数据类型
-                    url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getMyselfUser" ,
+                    url: APP_PATH + "/zheye-forum/user/getMyselfUser" ,
                     success: function (data) {
                         // 状态码
                         var code = data.code;

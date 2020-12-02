@@ -9,7 +9,7 @@ $(function() {
         /**上传图片相关配置如下*/
         imageUpload : true,
         imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-        imageUploadURL : APP_PATH + "/api/rest/nanshengbbs/v3.0/article/uploadPicture",
+        imageUploadURL : APP_PATH + "/zheye-forum/article/uploadPicture",
 
         onload: function() {
             // 引入插件 执行监听方法
@@ -63,7 +63,7 @@ $(function() {
 $(function () {
     $.ajax({
         //几个参数需要注意一下
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/plate/getPlate",
+        url: APP_PATH + "/zheye-forum/board/getBoard",
         type: "get",//方法类型
         dataType: "json",//预期服务器返回的数据类型
         success: function (data) {
@@ -72,16 +72,16 @@ $(function () {
             // 提示信息
             var msg = data.msg;
             if (code == 200) {
-                var plates = data.data.plate;
-                var posted_plate_all = "";
-                for (var i=0;i<plates.length;i++){
-                    var plate = plates[i];
-                    $("#posted_plate_hide option").attr("value", plate.bid);
-                    $("#posted_plate_hide option").html(plate.bname);
+                var boards = data.data.board;
+                var posted_board_all = "";
+                for (var i=0;i<boards.length;i++){
+                    var board = boards[i];
+                    $("#posted_board_hide option").attr("value", board.bid);
+                    $("#posted_board_hide option").html(board.bname);
 
-                    posted_plate_all = posted_plate_all + $("#posted_plate_hide").html();
+                    posted_board_all = posted_board_all + $("#posted_board_hide").html();
                 }
-                $("#posted_plate_all").html(posted_plate_all);
+                $("#posted_board_all").html(posted_board_all);
             } else if (code == 500) {
                 layer.msg(msg,{icon: 5});
             }
@@ -107,7 +107,7 @@ $("#issue-submit").click(function () {
     var formData = new FormData();
     formData.append("titles", $.trim($("#titles").val()));
     formData.append("fcontent", $.trim($("#fcontent").val()));
-    formData.append("bid", $("#posted_plate_all").val());
+    formData.append("bid", $("#posted_board_all").val());
     var picture = $("#f_previewImg")[0].files[0];
     if (picture.size > sourceFileSize) {    // 超过上传源文件允许的最大值
         layer.msg("请上传不超过 " + sourceFileSize/(1024*1024) + "M 的图片!",{icon: 5});
@@ -119,7 +119,7 @@ $("#issue-submit").click(function () {
 
     $.ajax({
         //几个参数需要注意一下
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/setArticle",
+        url: APP_PATH + "/zheye-forum/article/setArticle",
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
         data: formData,

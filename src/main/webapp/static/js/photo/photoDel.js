@@ -1,7 +1,7 @@
 /*相册删除*/
-function photoProDel(fid) {
+function albumDel(fid) {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/photoPro/deletePhotoPro?fid=" + fid,
+        url: APP_PATH + "/zheye-forum/album/deleteAlbum?fid=" + fid,
         type: "delete",
         dataType: "json",
         success: function (data) {
@@ -24,9 +24,9 @@ function photoProDel(fid) {
 }
 
 /*照片删除*/
-function tbPhotoDel(xid) {
+function photoDel(xid) {
     $.ajax({
-        url: APP_PATH + "/tbPhotoController/deleteTbPhoto/" + xid,
+        url: APP_PATH + "/photoController/deletePhoto/" + xid,
         type: "delete",
         dataType: "json",
         success: function (data) {

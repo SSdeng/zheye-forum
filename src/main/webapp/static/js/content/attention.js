@@ -9,7 +9,7 @@ function attentionAdd(beuserid) {
         //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/attention/setAttention" ,
+        url: APP_PATH + "/zheye-forum/attention/setAttention" ,
         data: data,
         success: function (data) {
             // 状态码
@@ -38,7 +38,7 @@ function attentionDel(beuserid) {
         //几个参数需要注意一下
         type: "delete",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/attention/deleteByUserid/" + beuserid ,
+        url: APP_PATH + "/zheye-forum/attention/deleteByUserid/" + beuserid ,
         success: function (data) {
             // 状态码
             var code = data.code;
@@ -66,7 +66,7 @@ function attentionDelMyself(beuserid, gid) {
         //几个参数需要注意一下
         type: "delete",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/attention/deleteAttention/" + gid ,
+        url: APP_PATH + "/zheye-forum/attention/deleteAttention/" + gid ,
         success: function (data) {
             // 状态码
             var code = data.code;

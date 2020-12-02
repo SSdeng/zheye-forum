@@ -1,7 +1,7 @@
 //个人主页展示
 $(function () {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getUserId/" + getAddressArgs("userid"),
+        url: APP_PATH + "/zheye-forum/user/getUserId/" + getAddressArgs("userid"),
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -40,7 +40,7 @@ $(function () {
  */
 function daacCount() {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getDynamicAnswerAttentionCollectSum/" + getAddressArgs("userid"),
+        url: APP_PATH + "/zheye-forum/user/getDynamicAnswerAttentionCollectSum/" + getAddressArgs("userid"),
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -68,7 +68,7 @@ function daacCount() {
  */
 function dynamic() {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/getArticleUserid/" + getAddressArgs("userid"),
+        url: APP_PATH + "/zheye-forum/article/getArticleUserid/" + getAddressArgs("userid"),
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -164,7 +164,7 @@ function dynamic() {
  */
 function answer() {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/getAnswerArticleUserid/" + getAddressArgs("userid"),
+        url: APP_PATH + "/zheye-forum/article/getAnswerArticleUserid/" + getAddressArgs("userid"),
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -238,7 +238,7 @@ function answer() {
  */
 function attention() {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/user/getAttentionUserId/" + getAddressArgs("userid"),
+        url: APP_PATH + "/zheye-forum/user/getAttentionUserId/" + getAddressArgs("userid"),
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -355,7 +355,7 @@ function attention() {
  */
 function collect() {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/getCollectArticleUserid/" + getAddressArgs("userid"),
+        url: APP_PATH + "/zheye-forum/article/getCollectArticleUserid/" + getAddressArgs("userid"),
         type: "get",
         dataType: "json",
         success: function (data) {

@@ -118,9 +118,9 @@
 						</div>
 					</div>
 					<div class="col-md-3 col-xs-6">
-						<div class="ybp-user ybp-plate">
+						<div class="ybp-user ybp-board">
 							<div class="inner">
-								<h3 id="h3-plate"></h3>
+								<h3 id="h3-board"></h3>
 								<p>板块</p>
 							</div>
 							<div class="icon">
@@ -360,9 +360,9 @@
 			<!--########################################### 板块管理 ###########################################-->
 			<div class="row bkgl admin-h1" style="display: none;">
 				<h1>
-					板块信息<span class="text-primary" id="plate_total"></span>
+					板块信息<span class="text-primary" id="board_total"></span>
 					<!--新增按钮-->
-					<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#plate_Add" id="plates_add" style="display: none;">新增</button>
+					<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#board_Add" id="boards_add" style="display: none;">新增</button>
 				</h1>
 				<div class="col-md-12 " style="background-color: #fff; border-top: 3px solid #f39c12; top: 8px;">
 					<table class="table">
@@ -376,33 +376,33 @@
 						</tr>
 						</thead>
 						<!-- 板块列表 - 模板 -->
-						<tbody id="plate_hide" style="display: none;">
+						<tbody id="board_hide" style="display: none;">
 						<tr>
 							<!-- 序号 -->
-							<td id="plateNum"></td>
+							<td id="boardNum"></td>
 							<!-- 版块名 -->
-							<td id="plateName"></td>
+							<td id="boardName"></td>
 							<!-- 创建时间 -->
-							<td id="plateCreateTime"></td>
+							<td id="boardCreateTime"></td>
 							<!-- 更新时间 -->
-							<td id="plateUpdateTime"></td>
+							<td id="boardUpdateTime"></td>
 							<!-- 操作 -->
-							<td class=" text-center" id="plate_caozuo">
+							<td class=" text-center" id="board_caozuo">
 								<!-- 未登录 -->
-								<span id="form_plate_notlogin" class="glyphicon glyphicon-ban-circle" style="display: none;"></span>
+								<span id="form_board_notlogin" class="glyphicon glyphicon-ban-circle" style="display: none;"></span>
 								<!-- 修改 -->
-								<form id="form_updatePlate" method="put" style="display: inline;">
-									<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#plate_Update">修改</button>
+								<form id="form_updateBoard" method="put" style="display: inline;">
+									<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#board_Update">修改</button>
 								</form>
 								<!-- 删除 -->
-								<form id="form_delPlate" method="delete" style="display: inline;">
+								<form id="form_delBoard" method="delete" style="display: inline;">
 									<button type="button" class="btn btn-danger btn-sm">删除</button>
 								</form>
 							</td>
 						</tr>
 						</tbody>
 						<!-- 板块列表-实际数据 -->
-						<tbody id="plate_all"></tbody>
+						<tbody id="board_all"></tbody>
 					</table>
 				</div>
 			</div>
@@ -473,7 +473,7 @@
 <script src="${APP_PATH }/static/js/admin/user.js"></script>
 <script src="${APP_PATH }/static/js/admin/article.js"></script>
 <script src="${APP_PATH }/static/js/admin/visit.js"></script>
-<script src="${APP_PATH }/static/js/admin/plate.js"></script>
+<script src="${APP_PATH }/static/js/admin/board.js"></script>
 <script src="${APP_PATH }/static/js/visit/visitCharts.js"></script>
 <script src="${APP_PATH }/static/js/phones_pc.js"></script>
 

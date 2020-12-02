@@ -88,7 +88,7 @@
                                   select userid from attention where beuserid = #{userid,jdbcType=VARCHAR}
                                 </if >
                                 )) u
-          left join via v
+          left join profilePhoto v
           on u.userid = v.userid
           left join attention att on
             <if test="b">
@@ -108,7 +108,7 @@
   <!-- 按姓名（Email）和密码查询用户信息 -->
   <select id="selectUserImplByNEP" parameterType="com.zheye.bean.User" resultType="com.zheye.bean.impl.UserImpl">
     select u.userid, u.name, u.age, u.sex, u.email, u.family, u.intro, u.create_time, u.update_time, v.photo
-    from user u left join via v on u.userid = v.userid
+    from user u left join profilePhoto v on u.userid = v.userid
     where u.name = #{name,jdbcType=VARCHAR} and u.password = #{password,jdbcType=VARCHAR}
         or u.email = #{name,jdbcType=VARCHAR} and u.password = #{password,jdbcType=VARCHAR}
   </select>
@@ -132,7 +132,7 @@
   <!-- 查询用户信息（分页） -->
   <select id="selectUserImplPaging" parameterType="java.util.Map" resultType="com.zheye.bean.impl.UserImpl">
     select u.userid, u.name, u.age, u.sex, u.email, u.family, u.intro, u.create_time, u.update_time, v.photo
-    from user u left join via v on u.userid = v.userid
+    from user u left join profilePhoto v on u.userid = v.userid
     order by u.create_time desc
     limit #{offset},#{limit}
   </select>
@@ -168,7 +168,7 @@
   <!-- 获取新注册用户信息 -->
   <select id="selectNewUserImpl" resultType="com.zheye.bean.impl.UserImpl">
     select u.userid, u.name, u.create_time, v.photo
-    from user u left join via v on
+    from user u left join profilePhoto v on
     u.userid = v.userid
     order by create_time desc
     limit 8

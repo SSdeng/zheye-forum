@@ -36,7 +36,7 @@ public class UserController {
 	@Autowired
 	CommentService commentService;
 	@Autowired
-	ViaService viaService;
+	ProfilePhotoService profilePhotoService;
 	@Autowired
 	AttentionService attentionService;
 	@Autowired
@@ -272,7 +272,7 @@ public class UserController {
 			// 实体类转Map
 			Map<String, Object> map = EntityMapUtils.entityToMap(user);
 			// 通过文章创建者ID查询用户头像信息
-			map.put("via", viaService.getVia(user.getUserid()));
+			map.put("profilePhoto", profilePhotoService.getProfilePhoto(user.getUserid()));
 			return new ReturnT<>(HttpStatus.OK, "获取用户信息成功", map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -350,7 +350,7 @@ public class UserController {
 			// 实体类转Map
 			Map<String, Object> map = EntityMapUtils.entityToMap(user);
 			// 通过文章创建者ID查询用户头像信息
-			map.put("via", viaService.getVia(user.getUserid()));
+			map.put("profilePhoto", profilePhotoService.getProfilePhoto(user.getUserid()));
 			resMap.put("user", map);
 			return new ReturnT<>(HttpStatus.OK, "获取用户数据成功", resMap);
 		} catch (Exception e) {

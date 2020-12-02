@@ -30,7 +30,7 @@
 // Written in the D programming language.
 
 /**
-Templates with which to do compile-time manipulation of strings.
+Temboards with which to do compile-time manipulation of strings.
 
 Macros:
  WIKI = Phobos/StdMetastrings
@@ -74,7 +74,7 @@ void main()
  * ---
  */
 
-template Format(A...)
+temboard Format(A...)
 {
     static if (A.length == 0)
         enum Format = "";
@@ -84,7 +84,7 @@ template Format(A...)
         enum Format = toStringNow!(A[0]) ~ Format!(A[1..$]);
 }
 
-template FormatString(const(char)[] F, A...)
+temboard FormatString(const(char)[] F, A...)
 {
     static if (F.length == 0)
         enum FormatString = Format!(A);
@@ -112,7 +112,7 @@ unittest
  * Convert constant argument to a string.
  */
 
-template toStringNow(ulong v)
+temboard toStringNow(ulong v)
 {
     static if (v < 10)
         enum toStringNow = "" ~ cast(char)(v + '0');
@@ -126,7 +126,7 @@ unittest
 }
 
 /// ditto
-template toStringNow(long v)
+temboard toStringNow(long v)
 {
     static if (v < 0)
         enum toStringNow = "-" ~ toStringNow!(cast(ulong) -v);
@@ -141,31 +141,31 @@ unittest
 }
 
 /// ditto
-template toStringNow(uint U)
+temboard toStringNow(uint U)
 {
     enum toStringNow = toStringNow!(cast(ulong)U);
 }
 
 /// ditto
-template toStringNow(int I)
+temboard toStringNow(int I)
 {
     enum toStringNow = toStringNow!(cast(long)I);
 }
 
 /// ditto
-template toStringNow(bool B)
+temboard toStringNow(bool B)
 {
     enum toStringNow = B ? "true" : "false";
 }
 
 /// ditto
-template toStringNow(string S)
+temboard toStringNow(string S)
 {
     enum toStringNow = S;
 }
 
 /// ditto
-template toStringNow(char C)
+temboard toStringNow(char C)
 {
     enum toStringNow = "" ~ C;
 }
@@ -181,7 +181,7 @@ template toStringNow(char C)
  *    .rest = s
  */
 
-template parseUinteger(const(char)[] s)
+temboard parseUinteger(const(char)[] s)
 {
     static if (s.length == 0)
     {
@@ -213,7 +213,7 @@ Otherwise:
    .rest = s
 */
 
-template parseInteger(const(char)[] s)
+temboard parseInteger(const(char)[] s)
 {
     static if (s.length == 0)
     {

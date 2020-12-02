@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/bbs-ssmv2.8.2.iml" filepath="$PROJECT_DIR$/bbs-ssmv2.8.2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zheye-forum.iml" filepath="$PROJECT_DIR$/zheye-forum.iml" />
     </modules>
   </component>
 </project>

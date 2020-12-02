@@ -1,8 +1,8 @@
 package com.zheye.controller;
 
-import com.zheye.bean.TbPhoto;
+import com.zheye.bean.Photo;
 import com.zheye.code.ReturnT;
-import com.zheye.service.TbPhotoService;
+import com.zheye.service.PhotoService;
 import com.zheye.utils.FileUploadUtil;
 import com.zheye.utils.PathUtil;
 import com.zheye.utils.ThumbnailatorUtil;
@@ -26,7 +26,7 @@ import java.util.Map;
 @Controller
 public class PhotoController {
 	@Autowired
-	TbPhotoService tbPhotoService;
+	PhotoService photoService;
 	@Autowired
 	FileUploadUtil fileUploadUtil;
 	@Autowired
@@ -46,20 +46,20 @@ public class PhotoController {
 	 */
 	@PostMapping("/setPhoto/{fid}")
 	@ResponseBody
-	public ReturnT<?> setTbPhoto(@RequestParam("photo") MultipartFile file, HttpServletRequest request, HttpSession session, @PathVariable String fid) {
+	public ReturnT<?> setPhoto(@RequestParam("photo") MultipartFile file, HttpServletRequest request, HttpSession session, @PathVariable String fid) {
 		try {
 			// 当前文件大小
 			long currentFileSize = file.getSize();
 			// 上传源文件允许的最大值
 			long fileLength = thumbnailatorUtil.getFileLength();
 			if (currentFileSize <= fileLength) {
-				TbPhoto tbPhoto = new TbPhoto();
-				tbPhoto.setPhoto(fileUploadUtil.fileUpload(file, pathUtil.getPhotoPath()));
-				tbPhoto.setFid(fid);
-				tbPhoto.setUserid((String) session.getAttribute("userid"));
+				Photo photo = new Photo();
+				photo.setPhoto(fileUploadUtil.fileUpload(file, pathUtil.getPhotoPath()));
+				photo.setFid(fid);
+				photo.setUserid((String) session.getAttribute("userid"));
 				//保存到数据库
-				tbPhoto.setXid(UUIDUtil.getRandomUUID());
-				tbPhotoService.setTbPhoto(tbPhoto);
+				photo.setXid(UUIDUtil.getRandomUUID());
+				photoService.setPhoto(photo);
 
 				return ReturnT.success("上传照片成功");
 			} else {
@@ -79,10 +79,10 @@ public class PhotoController {
 	 */
 	@DeleteMapping("/deletePhoto/{xid}")
 	@ResponseBody
-	public ReturnT<?> deleteTbPhoto(@PathVariable String xid, HttpServletRequest request) {
+	public ReturnT<?> deletePhoto(@PathVariable String xid, HttpServletRequest request) {
 		try {
 			// 删除照片（数据库）
-			tbPhotoService.deleteTbPhoto(xid);
+			photoService.deletePhoto(xid);
 			return ReturnT.success("删除照片成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,11 +99,11 @@ public class PhotoController {
 	 */
 	@GetMapping("/getPhoto/{fid}")
 	@ResponseBody
-	public ReturnT<?> getTbPhoto(@PathVariable String fid, HttpSession session) {
+	public ReturnT<?> getPhoto(@PathVariable String fid, HttpSession session) {
 		Map<String, Object> map = new HashMap<>();
 		try {
-			TbPhoto tbPhoto = new TbPhoto(fid, (String) session.getAttribute("userid"));
-			map.put("listTbPhotos", tbPhotoService.getTbPhoto(tbPhoto));
+			Photo photo = new Photo(fid, (String) session.getAttribute("userid"));
+			map.put("listPhotos", photoService.getPhoto(photo));
 			return new ReturnT<>(HttpStatus.OK, "获取照片数据成功", map);
 		} catch (Exception e) {
 			e.printStackTrace();

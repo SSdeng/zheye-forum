@@ -16,7 +16,7 @@ function adminLogin(){
 
     //调ajax
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/admin/getLogin",
+        url: APP_PATH + "/zheye-forum/admin/getLogin",
         data: $('#form_adminLogin').serialize(),
         type: "post",
         dataType: "json",
@@ -51,7 +51,7 @@ function adminLogin(){
 function adminLogout(){
     //调ajax
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/admin/adminExit",
+        url: APP_PATH + "/zheye-forum/admin/adminExit",
         type: "get",
         dataType: "json",
         success: function(data){

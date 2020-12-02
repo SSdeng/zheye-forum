@@ -1,10 +1,10 @@
 /*--------------------------------------------------------- 相册 ---------------------------------------------------------*/
 /* 相册名创建预览 */
 function onkeyupAlbumNameCreate() {
-    var albumName = $.trim($("#photoProAdd_name").val());   //去掉前后空格
+    var albumName = $.trim($("#albumAdd_name").val());   //去掉前后空格
     var count_num = chEnWordCount(albumName);
-    if (count_num > albumNameLength){
-        layer.tips('不能超过【'+albumNameLength+'】个字符，当前数 - '+count_num, '#photoProAdd_name', {
+    if (count_num > albumNameLength) {
+        layer.tips('不能超过【' + albumNameLength + '】个字符，当前数 - ' + count_num, '#albumAdd_name', {
             tips: [1, '#ff6620'] //还可配置颜色
         });
         return false;
@@ -17,10 +17,10 @@ function onkeyupAlbumNameCreate() {
 }
 
 /*创建相册*/
-function photoProAdd() {
-    var album_name = $.trim($("#photoProAdd_name").val());   //去掉前后空格
-    if (album_name == ""){
-        layer.tips('请输入相册名!', '#photoProAdd_name', {
+function albumAdd() {
+    var album_name = $.trim($("#albumAdd_name").val());   //去掉前后空格
+    if (album_name == "") {
+        layer.tips('请输入相册名!', '#albumAdd_name', {
             tips: [1, '#ff6620'] //还可配置颜色
         });
         return false;
@@ -30,20 +30,20 @@ function photoProAdd() {
     }
 
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/photoPro/setPhotoPro",
+        url: APP_PATH + "/zheye-forum/album/setAlbum",
         type: "post",
         dataType: "json",
-        data: $('#form_photoProAdd').serialize(),
+        data: $('#form_albumAdd').serialize(),
         success: function (data) {
             // 状态码
             var code = data.code;
             // 提示信息
             var msg = data.msg;
             if (code == 200) {
-                $(".photoProAdd_name").val("");  //清空创建相册输入框
-                $('#photoProAdd').modal('hide');     // 关闭模态框
+                $(".albumAdd_name").val("");  //清空创建相册输入框
+                $('#albumAdd').modal('hide');     // 关闭模态框
                 $.ajax({
-                    url: APP_PATH + "/api/rest/nanshengbbs/v3.0/photoPro/getPhoto",
+                    url: APP_PATH + "/zheye-forum/album/getPhoto",
                     type: "get",
                     dataType: "json",
                     success: function (data) {
@@ -63,7 +63,7 @@ function photoProAdd() {
                 });
                 layer.msg(msg);
             } else if (code == 404) {
-                layer.tips(msg, '#photoProAdd_name', {
+                layer.tips(msg, '#albumAdd_name', {
                     tips: [1, '#ff6620'] //还可配置颜色
                 });
             } else if (code == 500) {
@@ -106,17 +106,17 @@ function photoAdd() {
         //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/tbPhotoController/setTbPhoto/" + fid ,
-        data: formData ,
+        url: APP_PATH + "/photoController/setPhoto/" + fid,
+        data: formData,
         // 告诉jQuery不要去处理发送的数据
-        processData : false,
+        processData: false,
         // 告诉jQuery不要去设置Content-Type请求头
-        contentType : false,
-        xhr: function(){
+        contentType: false,
+        xhr: function () {
             $(".picture-progress").show();
             myXhr = $.ajaxSettings.xhr();
-            if(myXhr.upload){
-                myXhr.upload.addEventListener('progress',function(e) {
+            if (myXhr.upload) {
+                myXhr.upload.addEventListener('progress', function (e) {
                     if (e.lengthComputable) {
                         var percent = Math.floor(e.loaded/e.total*100);
                         if (percent <= 100) {
@@ -147,7 +147,7 @@ function photoAdd() {
                 $('#photoAdd').modal('hide');     // 关闭模态框
                 layer.msg(msg);
                 $.ajax({
-                    url: APP_PATH + "/api/rest/nanshengbbs/v3.0/photoPro/getPhotoProFid/" + fid,
+                    url: APP_PATH + "/zheye-forum/album/getAlbumFid/" + fid,
                     type: "get",
                     dataType: "json",
                     success: function (data) {

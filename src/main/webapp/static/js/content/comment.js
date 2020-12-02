@@ -10,7 +10,7 @@ function commentAdd(fid, fuserid) { // fuserid:该文章对应的用户（博主
         //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/comment/setComment" ,
+        url: APP_PATH + "/zheye-forum/comment/setComment" ,
         data: data,
         success: function (data) {
             // 状态码
@@ -22,7 +22,7 @@ function commentAdd(fid, fuserid) { // fuserid:该文章对应的用户（博主
                 $.ajax({
                     type: "get",//方法类型
                     dataType: "json",//预期服务器返回的数据类型
-                    url: APP_PATH + "/api/rest/nanshengbbs/v3.0/comment/getCommentFid/" + fid ,
+                    url: APP_PATH + "/zheye-forum/comment/getCommentFid/" + fid ,
                     success: function (data) {
                         var comment_all = "";
                         // 清空评论展示-实际数据
@@ -65,7 +65,7 @@ function commentDel(pid) {
         //几个参数需要注意一下
         type: "delete",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/comment/deleteComment/" + pid ,
+        url: APP_PATH + "/zheye-forum/comment/deleteComment/" + pid ,
         success: function (data) {
             // 状态码
             var code = data.code;

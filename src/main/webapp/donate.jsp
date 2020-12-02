@@ -14,7 +14,7 @@
 <!-- 首页-头部 -->
 <jsp:include page="/head/head.jsp"></jsp:include>
 <!-- 首页-修改文章 -->
-<jsp:include page="/donate/donate.jsp"></jsp:include>
+<jsp:include page="/donate.jsp"></jsp:include>
 <!-- 首页-基本信息设置 -->
 <jsp:include page="/head/setup.jsp"></jsp:include>
 <!-- 首页-登录、注册 -->

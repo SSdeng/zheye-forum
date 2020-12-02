@@ -5,7 +5,7 @@ import com.zheye.bean.impl.CommentImpl;
 import com.zheye.code.ReturnT;
 import com.zheye.service.CommentService;
 import com.zheye.service.UserService;
-import com.zheye.service.ViaService;
+import com.zheye.service.ProfilePhotoService;
 import com.zheye.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +29,7 @@ public class CommentController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	ViaService viaService;
+	ProfilePhotoService profilePhotoService;
 
 	/**
 	 * 添加评论

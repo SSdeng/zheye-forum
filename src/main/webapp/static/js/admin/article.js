@@ -5,7 +5,7 @@ function articleCheck(fid, status) {
         "status": status
     };
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/updateArticleStatus",
+        url: APP_PATH + "/zheye-forum/article/updateArticleStatus",
         type: "put",
         dataType: "json",
         data: data,
@@ -61,7 +61,7 @@ function articleCheck(fid, status) {
 /*分页操作*/
 function articlePage(pageStart) {
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/getArticleManagement?pageStart="+pageStart,
+        url: APP_PATH + "/zheye-forum/article/getArticleManagement?pageStart="+pageStart,
         type: "get",
         dataType: "json",
         success: function (data) {

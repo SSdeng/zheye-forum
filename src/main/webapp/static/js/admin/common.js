@@ -189,50 +189,50 @@ function getArticleList(data) {
 
 /*########################################### 板块管理 ############################################################*/
 // 构造板块列表信息
-function getPlateList(data) {
-    var plate_all = "";
+function getBoardList(data) {
+    var board_all = "";
     // 新增按钮
     if (aname != ""){  // 已登录
-        $("#plates_add").show();
+        $("#boards_add").show();
     }
-    var plates = data.plate;
-    var plate_num = 0;   //计数
-    for (var i=0;i<plates.length;i++){
-        plate_num++;
-        var plate = plates[i];
+    var boards = data.board;
+    var board_num = 0;   //计数
+    for (var i=0;i<boards.length;i++){
+        board_num++;
+        var board = boards[i];
 
         // 序号
-        $("#plateNum").html(plate_num);
+        $("#boardNum").html(board_num);
         // 版块名
-        $("#plateName").html(plate.bname);
+        $("#boardName").html(board.bname);
         // 创建时间
-        $("#plateCreateTime").html(dateTimeFormat(plate.createTime));
+        $("#boardCreateTime").html(dateTimeFormat(board.createTime));
         // 更新时间
-        $("#plateUpdateTime").html(dateTimeFormat(plate.updateTime));
+        $("#boardUpdateTime").html(dateTimeFormat(board.updateTime));
         // 操作
-        var form_delPlate_id = "form_delPlate" + plate.bid;
-        $("#form_delPlate").attr("id", form_delPlate_id);
+        var form_delBoard_id = "form_delBoard" + board.bid;
+        $("#form_delBoard").attr("id", form_delBoard_id);
         // 修改
-        $("#form_updatePlate button").attr("onclick", "plateShow('" + plate.bid + "','" + plate.bname + "')");
+        $("#form_updateBoard button").attr("onclick", "boardShow('" + board.bid + "','" + board.bname + "')");
         // 删除
-        $("#" + form_delPlate_id + " button").attr("onclick", "b_del('" + plate.bid + "')");
+        $("#" + form_delBoard_id + " button").attr("onclick", "b_del('" + board.bid + "')");
         if (aname == ""){  // 未登录
-            $("#form_plate_notlogin").show();
-            $("#form_updatePlate").hide();
-            $("#" + form_delPlate_id).hide();
+            $("#form_board_notlogin").show();
+            $("#form_updateBoard").hide();
+            $("#" + form_delBoard_id).hide();
         } else {
-            $("#form_plate_notlogin").hide();
-            $("#form_updatePlate").show();
-            $("#" + form_delPlate_id).show();
+            $("#form_board_notlogin").hide();
+            $("#form_updateBoard").show();
+            $("#" + form_delBoard_id).show();
         }
 
-        plate_all = plate_all + $("#plate_hide").html();
+        board_all = board_all + $("#board_hide").html();
 
         // 删除-复原
-        $("#" + form_delPlate_id).attr("id", "form_delPlate");
+        $("#" + form_delBoard_id).attr("id", "form_delBoard");
     }
 
-    return plate_all;
+    return board_all;
 }
 /*########################################### 板块管理-end ############################################################*/
 

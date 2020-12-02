@@ -30,7 +30,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 || uri.contains("/article/getAnswerArticleUserid")            // 回答
                 || uri.contains("/user/getAttentionUserId")                   // 关注
                 || uri.contains("/article/getCollectArticleUserid")           // 收藏
-                || uri.contains("/plate/getPlate")                            // 获取所有版块信息-------------
+                || uri.contains("/board/getBoard")                            // 获取所有版块信息-------------
                 || uri.contains("/article/getHotArticle")                     // 获取热门文章信息-------------
                 || uri.contains("/comment/getNewComment")                     // 获取最新评论信息-------------
                 || uri.contains("/visit/getStatVisit")                        // 获取方无统计信息-------------
@@ -48,7 +48,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 || uri.endsWith("/admin")                                     // 管理系统
                 || uri.contains("/admin/getLogin")                            // 管理系统-登录
                 || uri.contains("/admin/adminExit")                           // 管理系统-登出
-                || uri.contains("/admin/getUserArticlePlateVisitSum")         // 管理系统-获取用户、文章、板块、访问总数
+                || uri.contains("/admin/getUserArticleBoardVisitSum")         // 管理系统-获取用户、文章、板块、访问总数
                 || uri.contains("/user/getUser")                              // 管理系统-分页获取用户
                 || uri.contains("/article/getArticleManagement")              // 管理系统-分页获取文章
                 || uri.contains("/visit/getVisit")                            // 管理系统-分页获取访问信息
@@ -62,9 +62,9 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (username != null && !username.equals("")) {
             boolean interfaceBoolean2 = uri.contains("/user/deleteUser")      // 管理系统-删除用户
                     || uri.contains("/article/updateArticleStatus")           // 管理系统-文章审核
-                    || uri.contains("/plate/setPlate")                        // 管理系统-板块新增
-                    || uri.contains("/plate/updatePlate")                     // 管理系统-板块修改
-                    || uri.contains("/plate/deletePlate");                    // 管理系统-板块删除
+                    || uri.contains("/board/setBoard")                        // 管理系统-板块新增
+                    || uri.contains("/board/updateBoard")                     // 管理系统-板块修改
+                    || uri.contains("/board/deleteBoard");                    // 管理系统-板块删除
             if (!interfaceBoolean2) {    // 以上是管理员才有的权限，普通用户无权操作
                 return true;
             }

@@ -35,7 +35,7 @@
                     <!-- 文章展示-详情 -->
                     <jsp:include page="articleDetails.jsp"></jsp:include>
                 </div>
-                <div class="plateQuery">
+                <div class="boardQuery">
                     <!-- 文章展示-模板（主要用于板块查询） -->
                     <jsp:include page="articlesHide.jsp"></jsp:include>
                     <!-- 文章展示-实际数据 -->
@@ -60,7 +60,7 @@
 <script src="${APP_PATH }/static/js/content/attention.js"></script>
 <script src="${APP_PATH }/static/js/content/collect.js"></script>
 <script src="${APP_PATH }/static/js/content/enjoy.js"></script>
-<script src="${APP_PATH }/static/js/content/plate.js"></script>
+<script src="${APP_PATH }/static/js/content/board.js"></script>
 <%--<script src="${APP_PATH }/static/js/content/articleEdit.js"></script>--%>
 <script src="${APP_PATH }/static/js/content/visit.js"></script>
 <script src="${APP_PATH }/static/js/share.js"></script>

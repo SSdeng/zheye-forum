@@ -4,7 +4,7 @@ function articleDel(fid) {
         //几个参数需要注意一下
         type: "delete",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/deleteArticle/"+fid ,
+        url: APP_PATH + "/zheye-forum/article/deleteArticle/"+fid ,
         success: function (data) {
             // 状态码
             var code = data.code;

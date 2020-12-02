@@ -1,8 +1,8 @@
 package com.zheye.controller;
 
-import com.zheye.bean.Plate;
+import com.zheye.bean.Board;
 import com.zheye.code.ReturnT;
-import com.zheye.service.PlateService;
+import com.zheye.service.BoardService;
 import com.zheye.utils.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +18,10 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/zheye-forum/board")
-@SessionAttributes(value = {"plate", "plateEdit"}, types = {String.class})
+@SessionAttributes(value = {"board", "boardEdit"}, types = {String.class})
 public class BoardController {
 	@Autowired
-	PlateService plateService;
+	BoardService boardService;
 
 	/**
 	 * 添加板块信息
@@ -31,14 +31,14 @@ public class BoardController {
 	 */
 	@PostMapping("/setBoard")
 	@ResponseBody
-	public ReturnT<?> setPlate(HttpServletRequest request) {
+	public ReturnT<?> setBoard(HttpServletRequest request) {
 		try {
-			Plate plate_add = new Plate();
-			//不知为何，Plate plate_add获取的值永远不是提交过来的结果，所以使用request.getParameter("bname")来获取
-			plate_add.setBname(request.getParameter("bname"));
-			if (plateService.getPlateName(plate_add).size() == 0) {    // 该版块名不存在
-				plate_add.setBid(UUIDUtil.getRandomUUID());
-				plateService.setPlate(plate_add);
+			Board board_add = new Board();
+			//不知为何，Board board_add获取的值永远不是提交过来的结果，所以使用request.getParameter("bname")来获取
+			board_add.setBname(request.getParameter("bname"));
+			if (boardService.getBoardName(board_add).size() == 0) {    // 该版块名不存在
+				board_add.setBid(UUIDUtil.getRandomUUID());
+				boardService.setBoard(board_add);
 				return ReturnT.success("添加板块成功");
 			} else {
 				return ReturnT.fail(HttpStatus.NOT_FOUND, "该板块已存在!");
@@ -57,11 +57,11 @@ public class BoardController {
 	 */
 	@DeleteMapping("/deleteBoard/{bid}")
 	@ResponseBody
-	public ReturnT<?> deletePlate(@PathVariable String bid) {
+	public ReturnT<?> deleteBoard(@PathVariable String bid) {
 		try {
-			Plate plate_delete = new Plate();
-			plate_delete.setBid(bid);
-			plateService.deletePlate(plate_delete);
+			Board board_delete = new Board();
+			board_delete.setBid(bid);
+			boardService.deleteBoard(board_delete);
 			return ReturnT.success("删除板块成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,13 +77,13 @@ public class BoardController {
 	 */
 	@PutMapping("/updateBoard")
 	@ResponseBody
-	public ReturnT<?> updatePlate(HttpServletRequest request) {
+	public ReturnT<?> updateBoard(HttpServletRequest request) {
 		try {
-			Plate plate = new Plate();
-			plate.setBid(request.getParameter("bid"));
-			plate.setBname(request.getParameter("bname"));
-			if (plateService.getPlateName(plate).size() == 0) {    // 该版块名不存在
-				plateService.updatePlate(plate);
+			Board board = new Board();
+			board.setBid(request.getParameter("bid"));
+			board.setBname(request.getParameter("bname"));
+			if (boardService.getBoardName(board).size() == 0) {    // 该版块名不存在
+				boardService.updateBoard(board);
 				return ReturnT.success("修改板块成功");
 			}else {
 				return ReturnT.fail(HttpStatus.NOT_FOUND, "该板块已存在!");
@@ -99,12 +99,12 @@ public class BoardController {
 	 */
 	@GetMapping("/getBoard")
 	@ResponseBody
-	public ReturnT<?> getPlate() {
+	public ReturnT<?> getBoard() {
 		Map<String, Object> map = new HashMap<>();
 		try {
-			map.put("plate", plateService.getPlate());
+			map.put("board", boardService.getBoard());
 			// 总板块数
-			map.put("total", plateService.getCount());
+			map.put("total", boardService.getCount());
 			return new ReturnT<>(HttpStatus.OK, "获取板块数据成功", map);
 		} catch (Exception e) {
 			e.printStackTrace();

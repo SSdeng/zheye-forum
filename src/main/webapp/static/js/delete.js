@@ -34,15 +34,15 @@ function f_del(fid) {
  * 相册删除确认框
  * @returns
  */
-function deletePhotoPro(fid) {
+function deleteAlbum(fid) {
     layer.confirm('确定删除该相册吗？<br>这将同时删除该相册下的所有照片<br>删除后无法恢复！', {
-        btn:["确定","取消"],
-        icon:2,
+        btn: ["确定", "取消"],
+        icon: 2,
         title: "删除提示"
-    }, function(){
+    }, function () {
         //点击确后关闭提示框
         layer.closeAll('dialog');
-        photoProDel(fid);
+        albumDel(fid);
     });
 }
 
@@ -58,6 +58,6 @@ function deletePhoto(xid) {
     }, function(){
         //点击确后关闭提示框
         layer.closeAll('dialog');
-        tbPhotoDel(xid);
+        photoDel(xid);
     });
 }

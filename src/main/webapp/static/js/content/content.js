@@ -4,7 +4,7 @@ $(function () {
     $("#content_left").css("background-color","transparent");
     /*----------------------------------------- 获取文章信息 -----------------------------------------*/
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/getArticle",
+        url: APP_PATH + "/zheye-forum/article/getArticle",
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -57,7 +57,7 @@ $(function () {
 
     /*----------------------------------------- 获取所有板块信息 -----------------------------------------*/
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/plate/getPlate",
+        url: APP_PATH + "/zheye-forum/board/getBoard",
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -67,7 +67,7 @@ $(function () {
             var msg = data.msg;
             if (code == 200) {
                 // 板块展示
-                getPlate(data.data.plate);
+                getBoard(data.data.board);
             } else if (code == 500) {
                 layer.msg(msg, {icon: 5});
             }
@@ -80,7 +80,7 @@ $(function () {
 
     /*----------------------------------------- 获取热门文章信息 -----------------------------------------*/
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/getHotArticle",
+        url: APP_PATH + "/zheye-forum/article/getHotArticle",
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -103,7 +103,7 @@ $(function () {
 
     /*----------------------------------------- 获取最新评论信息 -----------------------------------------*/
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/comment/getNewComment",
+        url: APP_PATH + "/zheye-forum/comment/getNewComment",
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -126,7 +126,7 @@ $(function () {
 
     /*----------------------------------------- 获取访问统计信息 -----------------------------------------*/
     $.ajax({
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/visit/getStatVisit",
+        url: APP_PATH + "/zheye-forum/visit/getStatVisit",
         type: "get",
         dataType: "json",
         success: function (data) {
@@ -149,7 +149,7 @@ $(function () {
 
     /*----------------------------------------- 记录访问信息 -----------------------------------------*/
     // $.ajax({
-    //     url: APP_PATH + "/api/rest/nanshengbbs/v3.0/visit/setVisit",
+    //     url: APP_PATH + "/zheye-forum/visit/setVisit",
     //     type: "post",
     //     dataType: "json",
     //     success: function (data) {

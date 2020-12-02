@@ -9,7 +9,7 @@ function collectAdd(fid) {
         //几个参数需要注意一下
         type: "post",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/collect/setCollect" ,
+        url: APP_PATH + "/zheye-forum/collect/setCollect" ,
         data: data,
         success: function (data) {
             // 状态码
@@ -38,7 +38,7 @@ function collectDel(fid) {
         //几个参数需要注意一下
         type: "delete",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/collect/deleteCollectUseridAndFid/" + fid,
+        url: APP_PATH + "/zheye-forum/collect/deleteCollectUseridAndFid/" + fid,
         success: function (data) {
             // 状态码
             var code = data.code;
@@ -66,7 +66,7 @@ function collectDelMyself(fid) {
         //几个参数需要注意一下
         type: "delete",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/collect/deleteCollectUseridAndFid/" + fid,
+        url: APP_PATH + "/zheye-forum/collect/deleteCollectUseridAndFid/" + fid,
         success: function (data) {
             // 状态码
             var code = data.code;

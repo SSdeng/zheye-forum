@@ -15,27 +15,27 @@ $(function() {
         //几个参数需要注意一下
         type: "get",//方法类型
         dataType: "json",//预期服务器返回的数据类型
-        url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/getUpdateArticle/" + fid,
+        url: APP_PATH + "/zheye-forum/article/getUpdateArticle/" + fid,
         success: function (data) {
             //文章所属板块
             var article_Edit_bid = "";
             var article = data.data.article;
-            var plates = data.data.plate;
+            var boards = data.data.board;
             // 状态码
             var code = data.code;
             // 提示信息
             var msg = data.msg;
             if (code == 200) {
-                for (var i=0;i<plates.length;i++){
-                    var plate = plates[i];
-                    if (plate.bid == article.bid){
+                for (var i=0;i<boards.length;i++){
+                    var board = boards[i];
+                    if (board.bid == article.bid){
                         $("#article_Edit_bid_hide option").attr("value", article.bid);
                         $("#article_Edit_bid_hide option").attr("selected", true);
-                        $("#article_Edit_bid_hide option").html(article.currentPlate.bname);
+                        $("#article_Edit_bid_hide option").html(article.currentBoard.bname);
                     } else {
                         $("#article_Edit_bid_hide option").removeAttr("selected");
-                        $("#article_Edit_bid_hide option").attr("value", plate.bid);
-                        $("#article_Edit_bid_hide option").html(plate.bname);
+                        $("#article_Edit_bid_hide option").attr("value", board.bid);
+                        $("#article_Edit_bid_hide option").html(board.bname);
                     }
 
                     article_Edit_bid = article_Edit_bid + $("#article_Edit_bid_hide").html();
@@ -92,7 +92,7 @@ $(function() {
         /**上传图片相关配置如下*/
         imageUpload : true,
         imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-        imageUploadURL : APP_PATH + "/api/rest/nanshengbbs/v3.0/article/uploadPicture",
+        imageUploadURL : APP_PATH + "/zheye-forum/article/uploadPicture",
 
         onload: function() {
             // 引入插件 执行监听方法
@@ -240,7 +240,7 @@ function updateArticle(original_photo) {    // original_photo：原始文章配�
             //几个参数需要注意一下
             type: "put",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/updateArticle" ,
+            url: APP_PATH + "/zheye-forum/article/updateArticle" ,
             data: formData ,
             // 告诉jQuery不要去处理发送的数据
             processData : false,
@@ -303,7 +303,7 @@ function updateArticle(original_photo) {    // original_photo：原始文章配�
             //几个参数需要注意一下
             type: "put",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: APP_PATH + "/api/rest/nanshengbbs/v3.0/article/updateArticleNotPhoto" ,
+            url: APP_PATH + "/zheye-forum/article/updateArticleNotPhoto" ,
             data: formData ,
             // 告诉jQuery不要去处理发送的数据
             processData : false,
