@@ -62,13 +62,17 @@ public class UserController {
 	@ResponseBody
 	public ReturnT<?> setSignUp(User user, Model model) {
 		try {
+			System.out.println(user);
 			if (userService.getUserName(user.getName()) == null) {	// 该用户不存在
 				if (userService.getEmail(user.getEmail()) == null) {	// 该Email不存在
+
+					System.err.println("进入");
 					user.setUserid(UUIDUtil.getRandomUUID());
 					userService.setUser(user);
 					model.addAttribute("userid", userService.getUserName(user.getName()).getUserid());
 					model.addAttribute("username", user.getName());
 					model.addAttribute("email", user.getEmail());
+					System.err.println("注册成功");
 					return ReturnT.success("注册成功");
 				} else {
 					return ReturnT.fail(HttpStatus.NOT_FOUND, "该Email已被其他用户使用");

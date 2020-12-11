@@ -104,6 +104,7 @@ function register() {
         "password": pass,
         "email": $.trim($("#email").val())
     };
+
     //调ajax
     $.ajax({
         url: APP_PATH + "/zheye-forum/user/setSignUp",
@@ -115,6 +116,8 @@ function register() {
             var code = data.code;
             // 提示信息
             var msg = data.msg;
+            console.log(data.code);
+            console.log(data.msg);
             if (code == 200) {
                 layer.msg(msg);
                 setTimeout(go, 500);   // 0.5秒后页面跳转

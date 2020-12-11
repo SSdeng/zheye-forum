@@ -206,6 +206,7 @@ function goCustom_brank(url){
 //页面的跳转-用户系统首页
 function go(){
     window.location.href = APP_PATH + "/index.jsp";
+    console.log("1231232132131")
 }
 
 //页面的跳转-个人主页

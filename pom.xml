@@ -9,6 +9,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
 				<configuration>
 					<source>8</source>
 					<target>8</target>
@@ -135,11 +136,11 @@
 		</dependency>
 
 		<!-- 七牛云 -->
-		<dependency>
+		<!--<dependency>
 			<groupId>com.qiniu</groupId>
 			<artifactId>qiniu-java-sdk</artifactId>
 			<version>[7.2.0, 7.2.99]</version>
-		</dependency>
+		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
 		<dependency>
@@ -184,10 +185,10 @@
 			<version>0.4.11</version>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
 			<artifactId>mybatis-enhance-actable</artifactId>
 			<version>1.0.1</version>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 </project>

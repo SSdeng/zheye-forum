@@ -18,8 +18,8 @@ import java.util.stream.Stream;
 public class FileUploadUtil {
     @Autowired
     ThumbnailatorUtil thumbnailatorUtil;
-    @Autowired
-    QiniuUtil qiniuUtil;
+/*    @Autowired
+    QiniuUtil qiniuUtil;*/
 
     private static Logger logger = LoggerFactory.getLogger(FileUploadUtil.class);
     // 文件存储根路径

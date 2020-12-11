@@ -25,18 +25,23 @@ public class ReturnT<T> implements Serializable {
 	public ReturnT(){}
 
 	public ReturnT(HttpStatus code, String msg) {
-
+		this.code=code.value();
+		this.msg=msg;
 	}
 	
 	public ReturnT(HttpStatus code, String msg, T data) {
-
+		this.code=code.value();
+		this.msg=msg;
+		this.data=data;
 	}
 
 	public ReturnT(String msg, T data) {
+		this.msg=msg;
+		this.data=data;
 	}
 
 	public ReturnT(T data) {
-
+		this.data=data;
 	}
 
 	@JsonIgnore
@@ -72,6 +77,8 @@ public class ReturnT<T> implements Serializable {
 	}
 
 	public static ReturnT success(String msg){
+		System.err.println(new ReturnT(SUCCESS_CODE, msg));
+		System.err.println(SUCCESS_CODE);
 		return new ReturnT(SUCCESS_CODE, msg);
 	}
 
